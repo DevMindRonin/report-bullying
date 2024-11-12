@@ -1,13 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-
-interface FormFieldsProps {
-  whistlerName: string;
-  setWhistlerName: (value: string) => void;
-  whistlerAge: number | "";
-  setWhistlerAge: (value: number | "") => void;
-  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { FormFieldsProps } from "../types/types";
 
 const FormFields: React.FC<FormFieldsProps> = ({
   whistlerName,

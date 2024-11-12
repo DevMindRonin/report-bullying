@@ -1,13 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { NotificationType } from "../types/types";
+import { NotificationItemProps } from "../types/types";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
-interface NotificationItemProps {
-  notification: NotificationType;
-  deleteNotification: (id: string) => void;
-}
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
   notification,

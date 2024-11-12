@@ -1,13 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
-interface SelectionTypeButtonsProps {
-  selectionType: "school" | "organization";
-  setSelectionType: React.Dispatch<
-    React.SetStateAction<"school" | "organization">
-  >;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
-}
+import { SelectionTypeButtonsProps } from "../types/types";
 
 const SelectionTypeButtons: React.FC<SelectionTypeButtonsProps> = ({
   selectionType,

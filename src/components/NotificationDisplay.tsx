@@ -1,13 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { NotificationType } from "../types/types";
-import { NavigateFunction } from "react-router-dom";
-
-interface NotiDetailViewProps {
-  notification: NotificationType;
-  onEditClick: () => void;
-  navigate: NavigateFunction;
-}
+import { NotiDetailViewProps } from "../types/types";
 
 const NotiDetailView: React.FC<NotiDetailViewProps> = ({
   notification,

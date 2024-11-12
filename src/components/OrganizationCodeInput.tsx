@@ -1,11 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-
-interface OrganizationCodeInputProps {
-  organizationCode: string;
-  setOrganizationCode: React.Dispatch<React.SetStateAction<string>>;
-  error: string | null;
-}
+import { OrganizationCodeInputProps } from "../types/types";
 
 const OrganizationCodeInput: React.FC<OrganizationCodeInputProps> = ({
   organizationCode,

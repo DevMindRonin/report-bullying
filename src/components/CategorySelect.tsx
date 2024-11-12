@@ -1,11 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { categories } from "../components/categories";
-
-interface CategorySelectProps {
-  categoryOption: string;
-  setCategoryOption: (value: string) => void;
-}
+import { CategorySelectProps } from "../types/types";
 
 const CategorySelect: React.FC<CategorySelectProps> = ({
   categoryOption,
