@@ -15,7 +15,6 @@ app.use(express.json({ limit: DATA_LIMIT }));
 app.use(express.urlencoded({ extended: true, limit: DATA_LIMIT }));
 app.use(cors());
 
-// Použití rout pro notifikace
 app.use("/api/notifications", notificationsRoutes);
 
 app.listen(SERVER_PORT, () => {

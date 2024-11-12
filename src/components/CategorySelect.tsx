@@ -1,4 +1,3 @@
-// CategorySelect.tsx
 import React from "react";
 import { Form } from "react-bootstrap";
 import { categories } from "../components/categories";
