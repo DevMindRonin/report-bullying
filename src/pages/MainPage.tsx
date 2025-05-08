@@ -3,8 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SelectionTypeButtons from "../components/SelectionTypeButtons";
 import OrganizationCodeInput from "../components/OrganizationCodeInput";
+import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
+  const { t, i18n } = useTranslation();
   const [selectionType, setSelectionType] = useState<"school" | "organization">(
     "school"
   );
@@ -28,7 +30,7 @@ const MainPage = () => {
 
   return (
     <div>
-      <h1 className="text-center">Díky, že to nenecháváte být</h1>
+      <h1 className="text-center">{t("welcome")}</h1>
       <div className="d-flex justify-content-center mt-4">
         <SelectionTypeButtons
           selectionType={selectionType}
