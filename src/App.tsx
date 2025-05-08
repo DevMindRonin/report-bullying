@@ -1,6 +1,7 @@
 import AppRoutes from "./routes/AppRoutes";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n/i18n";
+import "./styles/global.css";
 
 const savedLanguage = localStorage.getItem("language") || "en";
 i18n.changeLanguage(savedLanguage);

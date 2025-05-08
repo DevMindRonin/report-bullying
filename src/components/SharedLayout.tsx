@@ -5,10 +5,10 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const SharedLayout = () => {
   return (
-    <div className="vh-100 d-flex flex-column ">
+    <div className="d-flex flex-column min-vh-100">
       <Header />
-      <Container className="flex-grow-1 d-flex align-items-center justify-content-center">
-        <Row className="justify-content-center">
+      <Container className="flex-grow-1 d-flex align-items-center justify-content-center ">
+        <Row>
           <Col>
             <Outlet />
           </Col>

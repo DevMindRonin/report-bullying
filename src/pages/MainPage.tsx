@@ -6,7 +6,7 @@ import OrganizationCodeInput from "../components/OrganizationCodeInput";
 import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [selectionType, setSelectionType] = useState<"school" | "organization">(
     "school"
   );
