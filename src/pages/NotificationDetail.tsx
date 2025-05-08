@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { NotificationDetailProps, NotificationType } from "../types/types";
 import NotificationDetailForm from "../components/NotificationEditForm";
 import NotificationDetailView from "../components/NotificationDisplay";
+import { t } from "i18next";
 
 const NotificationDetail = ({
   notifications,
@@ -37,16 +38,16 @@ const NotificationDetail = ({
         setIsEditing(false);
         navigate("/notificationlist");
       } else {
-        console.error("Chybějící ID poznámky.");
+        console.error(t("idError"));
       }
     } catch (error) {
-      console.error("Chyba při ukládání:", error);
+      console.error(t("savingError"), error);
     }
   };
 
   return (
     <div>
-      <h2 className="mb-5">Detail oznámení</h2>
+      <h2 className="mb-5">{t("notificationDetail")}</h2>
       {isEditing ? (
         <NotificationDetailForm
           editedNotification={editedNotification}

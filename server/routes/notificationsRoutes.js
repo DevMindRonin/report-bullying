@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const notifications = await Notification.find().lean();
     res.json(notifications);
   } catch (error) {
-    res.status(500).json({ error: "Chyba při načítání upozornění." });
+    res.status(500).json({ error: "Error loading notification." });
   }
 });
 
@@ -32,7 +32,7 @@ router.post("/", upload.single("whistlerFile"), async (req, res) => {
     const savedNotification = await newNotification.save();
     res.json(savedNotification);
   } catch (error) {
-    res.status(500).json({ error: "Chyba při ukládání notifikace." });
+    res.status(500).json({ error: "Error saving notification." });
   }
 });
 
@@ -59,10 +59,10 @@ router.put("/:id", upload.single("whistlerFile"), async (req, res) => {
     if (updatedNotification) {
       res.json(updatedNotification);
     } else {
-      res.status(404).json({ error: "Notification nenalezeno" });
+      res.status(404).json({ error: "Notification not found." });
     }
   } catch (error) {
-    res.status(500).json({ error: "Chyba při aktualizaci notifikace." });
+    res.status(500).json({ error: "Error updating notification." });
   }
 });
 
@@ -73,15 +73,15 @@ router.get("/:id/file", async (req, res) => {
       const filePath = path.resolve(notification.whistlerFile.path);
       res.download(filePath, notification.whistlerFile.originalname, (err) => {
         if (err) {
-          console.error("Chyba při stahování souboru:", err);
-          res.status(500).send("Nepodařilo se stáhnout soubor.");
+          console.error("Error downloading file:", err);
+          res.status(500).send("Failed to download file.");
         }
       });
     } else {
-      res.status(404).send("Soubor nenalezen");
+      res.status(404).send("File not found.");
     }
   } catch (error) {
-    res.status(500).json({ error: "Chyba při načítání souboru." });
+    res.status(500).json({ error: "Error loading file." });
   }
 });
 
@@ -93,10 +93,10 @@ router.delete("/:id", async (req, res) => {
     if (deletedNotification) {
       res.json({ success: true, _id: deletedNotification._id });
     } else {
-      res.status(404).json({ error: "Notification nenalezeno" });
+      res.status(404).json({ error: "Notification not found." });
     }
   } catch (error) {
-    res.status(500).json({ error: "Chyba při mazání notifikace." });
+    res.status(500).json({ error: "Error deleting notification." });
   }
 });
 

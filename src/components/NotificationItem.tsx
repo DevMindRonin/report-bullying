@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { NotificationItemProps } from "../types/types";
+import { t } from "i18next";
+
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const NotificationItem: React.FC<NotificationItemProps> = ({
@@ -23,7 +25,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   download={notification.whistlerFile.originalname}
                   className="me-3"
                 >
-                  Stáhnout soubor
+                  {t("downloadFile")}
                 </a>
               )}
             <Button
@@ -40,7 +42,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               variant="outline-danger"
               onClick={() => deleteNotification(notification._id)}
             >
-              Smazat
+              {t("deleteButton")}
             </Button>
           </div>
         </div>

@@ -4,7 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { NotificationFormProps } from "../types/types";
 import CategorySelect from "../components/CategorySelect";
 import FormFields from "../components/FormFields";
-
+import { Trans } from "react-i18next";
+import { t } from "i18next";
 const FormPage = ({ addNotification }: NotificationFormProps) => {
   const navigate = useNavigate();
   const { entityType, entityName } = useLocation().state || {};
@@ -53,16 +54,22 @@ const FormPage = ({ addNotification }: NotificationFormProps) => {
         handleFileChange={handleFileChange}
       />
 
-      <div>
-        Seznamte se s informacemi o tom,{" "}
-        <a href="https://www.app.nntb.cz/cs/information-on-personal-data-processing-school">
-          jak zpracováváme osobní údaje.
-        </a>
-      </div>
+      <Trans
+        i18nKey="personalDataInfo"
+        components={{
+          1: (
+            <a
+              href="https://www.app.nntb.cz/cs/information-on-personal-data-processing-school"
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          ),
+        }}
+      />
 
       <div className="d-flex justify-content-center mt-3">
         <Button type="submit" variant="primary" className="mt-3">
-          Odeslat
+          {t("sendButton")}
         </Button>
       </div>
     </Form>

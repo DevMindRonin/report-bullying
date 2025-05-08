@@ -3,6 +3,7 @@ import { Table, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { NotificationListProps } from "../types/types";
 import NotificationItem from "../components/NotificationItem";
+import { t } from "i18next";
 
 const NotificationList = ({
   notifications,
@@ -12,7 +13,7 @@ const NotificationList = ({
 
   return (
     <div className="text-center">
-      <h2>Administrace oznámení</h2>
+      <h2>{t("admistrationTitle")}</h2>
       <Table responsive className="mt-5">
         <tbody>
           {notifications.map((notification) => (
@@ -26,7 +27,7 @@ const NotificationList = ({
       </Table>
 
       <Button variant="primary" className="mt-3" onClick={() => navigate("/")}>
-        Vložit nové oznámení
+        {t("newNotificationButton")}
       </Button>
     </div>
   );

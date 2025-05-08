@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
-import { categories } from "../components/categories";
+import { getCategories } from "../components/categories";
+import { t } from "i18next";
 
 const NewNotification = () => {
+  const categories = getCategories(t);
   const [entityName, setEntityName] = useState("");
   const { entityType } = useLocation().state || {};
   const navigate = useNavigate();
@@ -22,17 +24,17 @@ const NewNotification = () => {
 
   return (
     <div>
-      <h1>Nové oznámení</h1>
+      <h1>{t("newNotificationTitle")}</h1>
       <Form className="mt-5">
         <Form.Group controlId="categorySelect">
-          <Form.Label className="fw-bold">Kategorie</Form.Label>
+          <Form.Label className="fw-bold">{t("labelCategory")}</Form.Label>
           <Form.Control
             as="select"
             value={entityName}
             onChange={handleNotiSelect}
           >
             <option value="" disabled hidden>
-              Vyberte jednu možnost
+              {t("labelChooseNotification")}
             </option>
             {categories.map((category) => (
               <option key={category.value} value={category.value}>
@@ -48,7 +50,7 @@ const NewNotification = () => {
             className="mt-3"
             disabled={!entityName}
           >
-            Pokračovat
+            {t("nextButton")}
           </Button>
         </div>
       </Form>

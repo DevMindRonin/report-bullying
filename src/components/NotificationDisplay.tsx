@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "../types/types";
+import { t } from "i18next";
 
 const NotiDetailView: React.FC<NotiDetailViewProps> = ({
   notification,
@@ -13,18 +14,19 @@ const NotiDetailView: React.FC<NotiDetailViewProps> = ({
         <strong>Typ entity:</strong> {notification.entityType}
       </p>
       <p>
-        <strong>Název entity:</strong> {notification.entityName}
+        <strong>{t("entityName")}:</strong> {notification.entityName}
       </p>
       <p>
-        <strong>Jméno:</strong> {notification.whistlerName}
+        <strong>{t("labelName")}:</strong> {notification.whistlerName}
       </p>
       <p>
-        <strong>Věk:</strong> {notification.whistlerAge}
+        <strong>{t("labelAge")}:</strong> {notification.whistlerAge}
       </p>
       {notification.whistlerFile &&
         "originalname" in notification.whistlerFile && (
           <p>
-            <strong>Soubor:</strong> {notification.whistlerFile.originalname}
+            <strong>{t("file")}:</strong>{" "}
+            {notification.whistlerFile.originalname}
           </p>
         )}
       <div className="mt-3 d-flex justify-content-center">
@@ -33,10 +35,10 @@ const NotiDetailView: React.FC<NotiDetailViewProps> = ({
           className="mt-3"
           onClick={() => navigate("/notificationlist")}
         >
-          Zpět
+          {t("back")}
         </Button>
         <Button variant="primary" className="ms-3 mt-3" onClick={onEditClick}>
-          Editovat
+          {t("edit")}
         </Button>
       </div>
     </div>

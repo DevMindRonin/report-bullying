@@ -24,7 +24,7 @@ const MainPage = () => {
     if (selectionType === "school" && entityType) {
       navigate("/infopage", { state: { entityType } });
     } else if (selectionType === "organization") {
-      setError("Nesprávný přístupový kód. ");
+      setError(t("errorOrganizationCode"));
     }
   };
 
@@ -42,7 +42,9 @@ const MainPage = () => {
       <Form>
         {selectionType === "school" && (
           <Form.Group controlId="schoolSelect">
-            <Form.Label className="fw-bold text-start mt-4">Škola</Form.Label>
+            <Form.Label className="fw-bold text-start mt-4">
+              {t("labelSchool")}
+            </Form.Label>
             <Form.Control
               as="select"
               value={entityType}
@@ -50,10 +52,8 @@ const MainPage = () => {
               placeholder="Vyhledej školu"
               className="w-100"
             >
-              <option value="">-- Vyhledej školu --</option>
-              <option value="TestSchool">
-                Testovací škola - Neboj se NNTB vyzkoušet
-              </option>
+              <option value="">{t("findSchool")}</option>
+              <option value="TestSchool">{t("findSchoolTest")}</option>
             </Form.Control>
           </Form.Group>
         )}
@@ -69,7 +69,7 @@ const MainPage = () => {
 
       <div className="d-flex justify-content-center mt-3">
         <Button onClick={proceed} variant="primary">
-          Pokračovat
+          {t("nextButton")}
         </Button>
       </div>
     </div>

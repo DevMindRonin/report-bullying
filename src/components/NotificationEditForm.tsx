@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { NotificationType, NotificationDetailFormProps } from "../types/types";
-
+import { t } from "i18next";
 const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
   editedNotification,
   setEditedNotification,
@@ -34,7 +34,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
   return (
     <Form onSubmit={handleSaveClick}>
       <Form.Group controlId="whistlerName">
-        <Form.Label className="fw-bold">Jméno</Form.Label>
+        <Form.Label className="fw-bold">{t("labelName")}</Form.Label>
         <Form.Control
           type="text"
           name="whistlerName"
@@ -43,7 +43,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
         />
       </Form.Group>
       <Form.Group controlId="whistlerAge">
-        <Form.Label className="fw-bold">Věk</Form.Label>
+        <Form.Label className="fw-bold">{t("labelAge")}</Form.Label>
         <Form.Control
           type="number"
           name="whistlerAge"
@@ -52,7 +52,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
         />
       </Form.Group>
       <Form.Group controlId="whistlerFile">
-        <Form.Label className="fw-bold">Nahraj soubor</Form.Label>
+        <Form.Label className="fw-bold">{t("loadFile")}</Form.Label>
         <Form.Control
           type="file"
           name="whistlerFile"

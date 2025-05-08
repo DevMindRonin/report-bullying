@@ -1,29 +1,33 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { categories } from "../components/categories";
+import { getCategories } from "../components/categories";
 import { CategorySelectProps } from "../types/types";
+import { t } from "i18next";
 
 const CategorySelect: React.FC<CategorySelectProps> = ({
   categoryOption,
   setCategoryOption,
-}) => (
-  <Form.Group controlId="categorySelect">
-    <Form.Label className="fw-bold">Kategorie</Form.Label>
-    <Form.Control
-      as="select"
-      value={categoryOption}
-      onChange={(e) => setCategoryOption(e.target.value)}
-    >
-      <option value="" disabled hidden>
-        Vyberte jednu možnost
-      </option>
-      {categories.map((category) => (
-        <option key={category.value} value={category.value}>
-          {category.label}
+}) => {
+  const categories = getCategories(t);
+  return (
+    <Form.Group controlId="categorySelect">
+      <Form.Label className="fw-bold">{t("labelCategory")}</Form.Label>
+      <Form.Control
+        as="select"
+        value={categoryOption}
+        onChange={(e) => setCategoryOption(e.target.value)}
+      >
+        <option value="" disabled hidden>
+          {t("labelChooseNotification")}
         </option>
-      ))}
-    </Form.Control>
-  </Form.Group>
-);
+        {categories.map((category) => (
+          <option key={category.value} value={category.value}>
+            {category.label}
+          </option>
+        ))}
+      </Form.Control>
+    </Form.Group>
+  );
+};
 
 export default CategorySelect;
