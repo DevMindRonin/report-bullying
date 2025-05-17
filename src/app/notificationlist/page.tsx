@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { NotificationListProps } from "@/types/types";
@@ -7,9 +7,14 @@ import NotificationItem from "@/components/NotificationItem";
 import { t } from "i18next";
 import { useNotificationStore } from "@/stores/notificationStore";
 
-const NotificationList = ({ deleteNotification }: NotificationListProps) => {
+const NotificationList = () => {
   const navigate = useRouter();
-  const notifications = useNotificationStore((s) => s.notifications);
+  const { notifications, loadNotifications, deleteNotification } =
+    useNotificationStore();
+
+  useEffect(() => {
+    loadNotifications();
+  }, []);
 
   return (
     <div className="text-center">
