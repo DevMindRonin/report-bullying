@@ -5,12 +5,11 @@ import { useRouter } from "next/navigation";
 import { NotificationListProps } from "@/types/types";
 import NotificationItem from "@/components/NotificationItem";
 import { t } from "i18next";
+import { useNotificationStore } from "@/stores/notificationStore";
 
-const NotificationList = ({
-  notifications,
-  deleteNotification,
-}: NotificationListProps) => {
+const NotificationList = ({ deleteNotification }: NotificationListProps) => {
   const navigate = useRouter();
+  const notifications = useNotificationStore((s) => s.notifications);
 
   return (
     <div className="text-center">

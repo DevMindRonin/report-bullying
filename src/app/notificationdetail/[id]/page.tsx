@@ -10,9 +10,11 @@ import { t } from "i18next";
 const NotificationDetail = () => {
   const notifications = useNotificationStore((s) => s.notifications);
   const editNotification = useNotificationStore((s) => s.editNotification);
+
   const navigate = useRouter();
   const params = useParams();
   const notificationId = params?.id as string;
+
   const notification = notifications.find((n) => n._id === notificationId);
 
   const [isEditing, setIsEditing] = useState(false);

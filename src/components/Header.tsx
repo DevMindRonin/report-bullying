@@ -7,21 +7,27 @@ import Logo from "@/assets/images/nntb.jpg";
 
 const Header = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(
-    localStorage.getItem("language") || "en"
-  );
+  const [language, setLanguage] = useState("en");
   const [key, setKey] = useState(0);
 
   useEffect(() => {
-    i18n.changeLanguage(language);
+    const savedLang = localStorage.getItem("language");
+    if (savedLang) {
+      setLanguage(savedLang);
+      i18n.changeLanguage(savedLang);
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("language", language);
+    i18n.changeLanguage(language);
     setKey((prevKey) => prevKey + 1);
-  }, [language, i18n]);
+  }, [language]);
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLanguage(e.target.value);
     i18n.changeLanguage(e.target.value);
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

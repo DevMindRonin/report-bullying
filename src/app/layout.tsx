@@ -8,17 +8,21 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <Header />
-      <Container className="flex-grow-1 d-flex align-items-center justify-content-center ">
-        <Row>
-          <Col>
-            <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-          </Col>
-        </Row>
-      </Container>
-      <Footer />
-    </div>
+    <html lang="cs">
+      <body>
+        <div className="d-flex flex-column min-vh-100">
+          <Header />
+          <Container className="flex-grow-1 d-flex align-items-center justify-content-center ">
+            <Row>
+              <Col>
+                <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+              </Col>
+            </Row>
+          </Container>
+          <Footer />
+        </div>
+      </body>
+    </html>
   );
 };
 
