@@ -1,6 +1,7 @@
+"use client";
 import React from "react";
 import { Button } from "react-bootstrap";
-import { SelectionTypeButtonsProps } from "../types/types";
+import { SelectionTypeButtonsProps } from "@/types/types";
 import { useTranslation } from "react-i18next";
 
 const SelectionTypeButtons: React.FC<SelectionTypeButtonsProps> = ({

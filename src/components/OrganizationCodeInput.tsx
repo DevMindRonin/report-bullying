@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { OrganizationCodeInputProps } from "../types/types";
+import { OrganizationCodeInputProps } from "@/types/types";
 import { useTranslation } from "react-i18next";
 const OrganizationCodeInput: React.FC<OrganizationCodeInputProps> = ({
   organizationCode,

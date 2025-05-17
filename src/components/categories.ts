@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import { TFunction } from "i18next";
 export const getCategories = (t: TFunction) => [
   { value: "bullying", label: t("notification1") },
