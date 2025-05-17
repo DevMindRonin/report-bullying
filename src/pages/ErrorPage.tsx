@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Trans } from "react-i18next";
 
 const ErrorPage = () => {
@@ -9,7 +9,7 @@ const ErrorPage = () => {
         <Trans
           i18nKey="notFoundMessage"
           components={{
-            1: <Link to="/" />,
+            1: <Link href="/" />,
           }}
         />
       </h3>
