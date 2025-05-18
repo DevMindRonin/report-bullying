@@ -4,10 +4,9 @@ import { Form, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
 import OrganizationCodeInput from "@/components/OrganizationCodeInput";
-import { useTranslation } from "@/app/i18n/useTranslation";
+import { Dictionary } from "@/app/i18n/types";
 
-const MainPage = () => {
-  const { dict } = useTranslation();
+const MainPage = ({ dict }: { dict: Dictionary }) => {
   const navigate = useRouter();
   const [selectionType, setSelectionType] = useState<"school" | "organization">(
     "school"

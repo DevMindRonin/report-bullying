@@ -5,7 +5,7 @@ import {
   deleteNotificationById,
   editNotificationById,
 } from "../services/notificationServices";
-import { NotificationType } from "@/types/types";
+import { NotificationType } from "@/types/notification.types";
 
 interface NotificationStore {
   notifications: NotificationType[];

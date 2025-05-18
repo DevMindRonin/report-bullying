@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
-import { NotificationItemProps } from "@/types/types";
+import { NotificationItemProps } from "@/types/notification.types";
 
 interface Props extends NotificationItemProps {
   dict: {

@@ -1,5 +1,8 @@
 import { Button, Form } from "react-bootstrap";
-import { NotificationType, NotificationDetailFormProps } from "@/types/types";
+import {
+  NotificationType,
+  NotificationDetailFormProps,
+} from "@/types/notification.types";
 
 interface Props extends NotificationDetailFormProps {
   dict: {

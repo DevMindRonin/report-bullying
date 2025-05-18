@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/i18n";
-import { getCategories } from "@/components/categories";
+import { getCategories } from "@/lib/categories";
 import type { Locale } from "@/app/i18n/types";
 import NewNotification from "@/components/NewNotification";
 

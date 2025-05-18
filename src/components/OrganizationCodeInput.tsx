@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { OrganizationCodeInputProps } from "@/types/types";
+import { OrganizationCodeInputProps } from "@/types/notification.types";
 
 interface Props extends OrganizationCodeInputProps {
   dict: {

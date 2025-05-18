@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { NotiDetailViewProps } from "@/types/types";
+import { NotiDetailViewProps } from "@/types/notification.types";
 
 interface Props extends NotiDetailViewProps {
   dict: {

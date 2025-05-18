@@ -1,10 +1,9 @@
-// components/NotificationDetail.tsx
 "use client";
 
 import { useNotificationStore } from "@/stores/notificationStore";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import type { NotificationType } from "@/types/types";
+import type { NotificationType } from "@/types/notification.types";
 import NotificationDetailForm from "@/components/NotificationEditForm";
 import NotificationDetailView from "@/components/NotificationDisplay";
 import type { Dictionary } from "@/app/i18n/types";

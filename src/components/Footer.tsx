@@ -1,10 +1,9 @@
 "use client";
 import Logo from "@/assets/images/nntb.jpg";
 import Image from "next/image";
-import { useTranslation } from "@/app/i18n/useTranslation";
+import { Dictionary } from "@/app/i18n/types";
 
-const Footer = () => {
-  const { dict } = useTranslation();
+const Footer = ({ dict }: { dict: Dictionary }) => {
   return (
     <footer className="d-flex flex-column align-items-center mb-3">
       <div className="border bg-success-subtle text-success p-2 d-inline-block">

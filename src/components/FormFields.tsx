@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { FormFieldsProps } from "../types/types";
+import { FormFieldsProps } from "../types/notification.types";
 
 interface Props extends FormFieldsProps {
   dict: {

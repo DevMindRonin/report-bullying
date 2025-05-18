@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { getCategories } from "../components/categories";
-import { CategorySelectProps } from "@/types/types";
+import { getCategories } from "../lib/categories";
+import { CategorySelectProps } from "@/types/notification.types";
 
 interface Props extends CategorySelectProps {
   dict: {

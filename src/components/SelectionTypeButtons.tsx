@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "react-bootstrap";
-import { SelectionTypeButtonsProps } from "@/types/types";
+import { SelectionTypeButtonsProps } from "@/types/notification.types";
 
 interface Props extends SelectionTypeButtonsProps {
   dict: {
