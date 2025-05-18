@@ -1,12 +1,10 @@
+"use client";
 import Logo from "@/assets/images/nntb.jpg";
 import Image from "next/image";
-import { Dictionary } from "@/app/i18n/config.ts";
+import { useTranslation } from "@/app/i18n/useTranslation";
 
-interface Props {
-  dict: Dictionary["common"] & Pick<Dictionary, "encryptInfo" | "footerText">;
-}
-
-const Footer = ({ dict }: Props) => {
+const Footer = () => {
+  const { dict } = useTranslation();
   return (
     <footer className="d-flex flex-column align-items-center mb-3">
       <div className="border bg-success-subtle text-success p-2 d-inline-block">

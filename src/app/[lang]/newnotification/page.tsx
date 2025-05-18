@@ -3,13 +3,14 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import { getCategories } from "@/components/categories";
-import { t } from "i18next";
+import { useTranslation } from "@/app/i18n/useTranslation";
 
 const NewNotification = () => {
+  const { dict } = useTranslation();
   const navigate = useRouter();
   const searchParams = useSearchParams();
   const entityType = searchParams.get("entityType") ?? "";
-  const categories = getCategories(t);
+  const categories = getCategories(dict);
   const [entityName, setEntityName] = useState("");
 
   const handleNotiSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,17 +31,17 @@ const NewNotification = () => {
 
   return (
     <div>
-      <h1>{t("newNotificationTitle")}</h1>
+      <h1>{dict.newNotificationTitle}</h1>
       <Form className="mt-5">
         <Form.Group controlId="categorySelect">
-          <Form.Label className="fw-bold">{t("labelCategory")}</Form.Label>
+          <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>
           <Form.Control
             as="select"
             value={entityName}
             onChange={handleNotiSelect}
           >
             <option value="" disabled hidden>
-              {t("labelChooseNotification")}
+              {dict.labelChooseNotification}
             </option>
             {categories.map((category) => (
               <option key={category.value} value={category.value}>
@@ -56,7 +57,7 @@ const NewNotification = () => {
             className="mt-3"
             disabled={!entityName}
           >
-            {t("nextButton")}
+            {dict.nextButton}
           </Button>
         </div>
       </Form>

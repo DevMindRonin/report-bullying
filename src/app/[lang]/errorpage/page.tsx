@@ -1,20 +1,20 @@
 import Link from "next/link";
-import { Trans } from "react-i18next";
+import { getDictionary } from "@/app/i18n/index";
+import type { Locale } from "@/app/i18n/types";
 
-const ErrorPage = () => {
+export default async function ErrorPage({
+  params,
+}: {
+  params: { lang: Locale };
+}) {
+  const dict = await getDictionary(params.lang);
+
   return (
-    <>
+    <div>
       <h3>
-        {" "}
-        <Trans
-          i18nKey="notFoundMessage"
-          components={{
-            1: <Link href="/" />,
-          }}
-        />
+        {dict.notFoundMessage}{" "}
+        <Link href={`/${params.lang}/`}>{dict.back}</Link>
       </h3>
-    </>
+    </div>
   );
-};
-
-export default ErrorPage;
+}

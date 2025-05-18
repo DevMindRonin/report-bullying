@@ -18,13 +18,13 @@ export async function generateMetadata({
   }));
 }
 
-export default async function LangLayout(
-  props: Promise<{
-    children: React.ReactNode;
-    params: { lang: Locale };
-  }>
-) {
-  const { children, params } = await props;
+export default async function LangLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { lang: Locale };
+}) {
   const dictionary = await getDictionary(params.lang);
 
   return (
@@ -35,7 +35,7 @@ export default async function LangLayout(
           <Col>{children}</Col>
         </Row>
       </Container>
-      <Footer dict={dictionary} />
+      <Footer />
     </>
   );
 }
