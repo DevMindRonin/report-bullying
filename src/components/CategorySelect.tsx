@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { getCategories } from "../components/categories";
-import { CategorySelectProps } from "../types/types";
+import { CategorySelectProps } from "@/types/types";
 import { t } from "i18next";
 
 const CategorySelect: React.FC<CategorySelectProps> = ({

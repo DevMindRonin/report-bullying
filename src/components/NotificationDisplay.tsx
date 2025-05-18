@@ -1,13 +1,12 @@
-import React from "react";
 import { Button } from "react-bootstrap";
-import { NotiDetailViewProps } from "../types/types";
+import { NotiDetailViewProps } from "@/types/types";
 import { t } from "i18next";
 
-const NotiDetailView: React.FC<NotiDetailViewProps> = ({
+const NotiDetailView = ({
   notification,
   onEditClick,
   navigate,
-}) => {
+}: NotiDetailViewProps) => {
   return (
     <div>
       <p>
@@ -33,7 +32,7 @@ const NotiDetailView: React.FC<NotiDetailViewProps> = ({
         <Button
           variant="primary"
           className="mt-3"
-          onClick={() => navigate("/notificationlist")}
+          onClick={() => navigate.push("/notificationlist")}
         >
           {t("back")}
         </Button>

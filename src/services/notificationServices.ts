@@ -1,5 +1,5 @@
-import { NotificationType } from "../types/types";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import { NotificationType } from "@/types/types";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const createNotification = async (
   notificationData: Partial<NotificationType>

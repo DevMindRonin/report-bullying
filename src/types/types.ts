@@ -1,4 +1,3 @@
-import { NavigateFunction } from "react-router-dom";
 export interface NotificationType {
   _id: string;
   entityType: string;
@@ -18,7 +17,7 @@ export interface NotificationType {
 export interface NotiDetailViewProps {
   notification: NotificationType;
   onEditClick: () => void;
-  navigate: NavigateFunction;
+  navigate: { push: (href: string) => void };
 }
 
 export interface FormFieldsProps {

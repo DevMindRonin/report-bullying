@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { NotificationItemProps } from "../types/types";
+import { useRouter } from "next/navigation";
+import { NotificationItemProps } from "@/types/types";
 import { t } from "i18next";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
@@ -10,7 +10,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   notification,
   deleteNotification,
 }) => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   return (
     <tr>
@@ -32,7 +32,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               className="ms-2 ps-4 pe-4"
               variant="outline-primary"
               onClick={() =>
-                navigate(`/notificationdetail/${notification._id}`)
+                navigate.push(`/notificationdetail/${notification._id}`)
               }
             >
               Detail

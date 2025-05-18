@@ -1,6 +1,5 @@
-import React from "react";
 import { Button, Form } from "react-bootstrap";
-import { NotificationType, NotificationDetailFormProps } from "../types/types";
+import { NotificationType, NotificationDetailFormProps } from "@/types/types";
 import { t } from "i18next";
 const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
   editedNotification,
