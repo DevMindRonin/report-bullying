@@ -4,12 +4,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import type { Dictionary } from "@/app/i18n/types";
 
-interface Props {
+const NewNotificationClient = ({
+  dict,
+  categories,
+}: {
   dict: Dictionary;
   categories: { label: string; value: string }[];
-}
-
-const NewNotificationClient = ({ dict, categories }: Props) => {
+}) => {
   const [entityName, setEntityName] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();

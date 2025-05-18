@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
 import OrganizationCodeInput from "@/components/OrganizationCodeInput";
 import { Dictionary } from "@/app/i18n/types";
+import { devIndicatorServerState } from "next/dist/server/dev/dev-indicator-server-state";
 
 const MainPage = ({ dict }: { dict: Dictionary }) => {
   const navigate = useRouter();
@@ -32,10 +33,7 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
       <h1 className="text-center">{dict.welcome}</h1>
       <div className="d-flex justify-content-center mt-4">
         <SelectionTypeButtons
-          dict={{
-            schoolReport: dict.schoolReport,
-            organisationReport: dict.organisationReport,
-          }}
+          dict={dict}
           selectionType={selectionType}
           setSelectionType={setSelectionType}
           setError={setError}
@@ -63,10 +61,7 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
 
         {selectionType === "organization" && (
           <OrganizationCodeInput
-            dict={{
-              labelOrganisation: dict.labelOrganisation,
-              findOrganisation: dict.findOrganisation,
-            }}
+            dict={dict}
             organizationCode={organizationCode}
             setOrganizationCode={setOrganizationCode}
             error={error}

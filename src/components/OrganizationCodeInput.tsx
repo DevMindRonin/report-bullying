@@ -1,20 +1,14 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { OrganizationCodeInputProps } from "@/types/notification.types";
+import { Dictionary } from "@/app/i18n/types";
 
-interface Props extends OrganizationCodeInputProps {
-  dict: {
-    labelOrganisation: string;
-    findOrganisation: string;
-  };
-}
-
-const OrganizationCodeInput: React.FC<Props> = ({
+const OrganizationCodeInput = ({
   organizationCode,
   setOrganizationCode,
   error,
   dict,
-}) => {
+}: OrganizationCodeInputProps & { dict: Dictionary }) => {
   return (
     <Form.Group controlId="organizationCode">
       <Form.Label className="fw-bold mt-4">{dict.labelOrganisation}</Form.Label>

@@ -1,23 +1,16 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { FormFieldsProps } from "../types/notification.types";
+import { FormFieldsProps } from "@/types/notification.types";
+import { Dictionary } from "@/app/i18n/types";
 
-interface Props extends FormFieldsProps {
-  dict: {
-    labelName: string;
-    labelAge: string;
-    loadFile: string;
-  };
-}
-
-const FormFields: React.FC<Props> = ({
+const FormFields = ({
   whistlerName,
   setWhistlerName,
   whistlerAge,
   setWhistlerAge,
   handleFileChange,
   dict,
-}) => (
+}: FormFieldsProps & { dict: Dictionary }) => (
   <>
     <Form.Group controlId="whistlerName">
       <Form.Label className="fw-bold">{dict.labelName}</Form.Label>

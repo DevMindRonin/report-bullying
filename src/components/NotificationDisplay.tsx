@@ -1,24 +1,13 @@
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "@/types/notification.types";
-
-interface Props extends NotiDetailViewProps {
-  dict: {
-    entityType: string;
-    entityName: string;
-    labelName: string;
-    labelAge: string;
-    file: string;
-    back: string;
-    edit: string;
-  };
-}
+import { Dictionary } from "@/app/i18n/types";
 
 const NotiDetailView = ({
+  dict,
   notification,
   onEditClick,
   navigate,
-  dict,
-}: Props) => {
+}: NotiDetailViewProps & { dict: Dictionary }) => {
   return (
     <div>
       <p>

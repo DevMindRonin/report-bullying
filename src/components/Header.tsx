@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import Logo from "@/assets/images/nntb.jpg";
 import { locales } from "@/app/i18n/config";
+import type { Locale } from "@/app/i18n/types";
 import { useLangStore } from "@/stores/langStore";
 import { isLocale } from "@/app/i18n/types";
-import type { Locale } from "@/app/i18n/types";
 
 const languageLabels: Record<Locale, string> = {
   cs: "Česky",

@@ -1,4 +1,3 @@
-// components/NotificationList.tsx
 "use client";
 
 import React, { useEffect } from "react";
@@ -8,7 +7,7 @@ import NotificationItem from "@/components/NotificationItem";
 import { useNotificationStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
 
-export default function NotificationList({ dict }: { dict: Dictionary }) {
+export const NotificationList = ({ dict }: { dict: Dictionary }) => {
   const navigate = useRouter();
   const { notifications, loadNotifications, deleteNotification } =
     useNotificationStore();
@@ -42,4 +41,5 @@ export default function NotificationList({ dict }: { dict: Dictionary }) {
       </Button>
     </div>
   );
-}
+};
+export default NotificationList;

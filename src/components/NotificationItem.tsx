@@ -2,21 +2,15 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { NotificationItemProps } from "@/types/notification.types";
-
-interface Props extends NotificationItemProps {
-  dict: {
-    downloadFile: string;
-    deleteButton: string;
-  };
-}
+import type { Dictionary } from "@/app/i18n/types";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const NotificationItem: React.FC<Props> = ({
+const NotificationItem = ({
   notification,
   deleteNotification,
   dict,
-}) => {
+}: { dict: Dictionary } & NotificationItemProps) => {
   const navigate = useRouter();
 
   return (

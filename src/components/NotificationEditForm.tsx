@@ -3,24 +3,15 @@ import {
   NotificationType,
   NotificationDetailFormProps,
 } from "@/types/notification.types";
+import { Dictionary } from "@/app/i18n/types";
 
-interface Props extends NotificationDetailFormProps {
-  dict: {
-    labelName: string;
-    labelAge: string;
-    loadFile: string;
-    save: string;
-    cancel: string;
-  };
-}
-
-const NotificationEditForm: React.FC<Props> = ({
+const NotificationEditForm = ({
   editedNotification,
   setEditedNotification,
   handleSaveClick,
   setIsEditing,
   dict,
-}) => {
+}: NotificationDetailFormProps & { dict: Dictionary }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEditedNotification((prevState: Partial<NotificationType>) => ({

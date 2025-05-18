@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { SelectionTypeButtonsProps } from "@/types/notification.types";
-
+import { Dictionary } from "@/app/i18n/types";
 interface Props extends SelectionTypeButtonsProps {
   dict: {
     schoolReport: string;
@@ -10,12 +10,12 @@ interface Props extends SelectionTypeButtonsProps {
   };
 }
 
-const SelectionTypeButtons: React.FC<Props> = ({
+const SelectionTypeButtons = ({
   selectionType,
   setSelectionType,
   setError,
   dict,
-}) => {
+}: SelectionTypeButtonsProps & { dict: Dictionary }) => {
   return (
     <div className="d-inline-flex bg-light p-1 rounded">
       <Button

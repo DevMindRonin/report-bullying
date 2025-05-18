@@ -25,7 +25,7 @@ export default async function LangLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const dictionary = await getDictionary(params.lang);
+  const dict = await getDictionary(params.lang);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default async function LangLayout({
           <Col>{children}</Col>
         </Row>
       </Container>
-      <Footer />
+      <Footer dict={dict} />
     </>
   );
 }

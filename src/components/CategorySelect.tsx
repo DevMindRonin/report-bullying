@@ -2,23 +2,13 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { getCategories } from "../lib/categories";
 import { CategorySelectProps } from "@/types/notification.types";
+import { Dictionary } from "@/app/i18n/types";
 
-interface Props extends CategorySelectProps {
-  dict: {
-    labelCategory: string;
-    labelChooseNotification: string;
-    notification1: string;
-    notification2: string;
-    notification3: string;
-    notification4: string;
-  };
-}
-
-const CategorySelect: React.FC<Props> = ({
+const CategorySelect = ({
   categoryOption,
   setCategoryOption,
   dict,
-}) => {
+}: CategorySelectProps & { dict: Dictionary }) => {
   const categories = getCategories(dict);
   return (
     <Form.Group controlId="categorySelect">
