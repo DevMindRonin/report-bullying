@@ -4,11 +4,10 @@ import { Form, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
 import OrganizationCodeInput from "@/components/OrganizationCodeInput";
+import { Dictionary } from "@/app/i18n/types";
 
 interface Props {
-  dict: {
-    [key: string]: string;
-  };
+  dict: Dictionary;
 }
 
 const MainPage = ({ dict }: Props) => {

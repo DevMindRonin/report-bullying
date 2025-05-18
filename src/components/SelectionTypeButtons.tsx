@@ -2,14 +2,20 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { SelectionTypeButtonsProps } from "@/types/types";
-import { useTranslation } from "react-i18next";
 
-const SelectionTypeButtons: React.FC<SelectionTypeButtonsProps> = ({
+interface Props extends SelectionTypeButtonsProps {
+  dict: {
+    schoolReport: string;
+    organisationReport: string;
+  };
+}
+
+const SelectionTypeButtons: React.FC<Props> = ({
   selectionType,
   setSelectionType,
   setError,
+  dict,
 }) => {
-  const { t } = useTranslation();
   return (
     <div className="d-inline-flex bg-light p-1 rounded">
       <Button
@@ -20,7 +26,7 @@ const SelectionTypeButtons: React.FC<SelectionTypeButtonsProps> = ({
         }}
         className="me-2"
       >
-        {t("schoolReport")}
+        {dict.schoolReport}
       </Button>
       <Button
         variant={selectionType === "organization" ? "secondary" : "light"}
@@ -29,7 +35,7 @@ const SelectionTypeButtons: React.FC<SelectionTypeButtonsProps> = ({
           setError(null);
         }}
       >
-        {t("organisationReport")}
+        {dict.organisationReport}
       </Button>
     </div>
   );

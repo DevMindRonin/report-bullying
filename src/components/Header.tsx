@@ -1,33 +1,35 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 import Logo from "@/assets/images/nntb.jpg";
+import { locales } from "@/app/i18n/config";
 
 const Header = () => {
-  const { i18n } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
   const [language, setLanguage] = useState("en");
-  const [key, setKey] = useState(0);
 
   useEffect(() => {
-    const savedLang = localStorage.getItem("language");
-    if (savedLang) {
-      setLanguage(savedLang);
-      i18n.changeLanguage(savedLang);
+    const urlLang = pathname.split("/")[1];
+    if (locales.includes(urlLang as any)) {
+      setLanguage(urlLang);
+    } else {
+      const savedLang = localStorage.getItem("language");
+      if (savedLang && locales.includes(savedLang as any)) {
+        setLanguage(savedLang);
+      }
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("language", language);
-    i18n.changeLanguage(language);
-    setKey((prevKey) => prevKey + 1);
-  }, [language]);
+  }, [pathname]);
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value);
-    i18n.changeLanguage(e.target.value);
-    // window.location.reload();
+    const newLang = e.target.value;
+    setLanguage(newLang);
+    localStorage.setItem("language", newLang);
+
+    const currentPathWithoutLocale = pathname.split("/").slice(2).join("/");
+    router.push(`/${newLang}/${currentPathWithoutLocale}`);
   };
 
   return (

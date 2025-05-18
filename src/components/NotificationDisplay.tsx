@@ -1,30 +1,42 @@
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "@/types/types";
-import { t } from "i18next";
+
+interface Props extends NotiDetailViewProps {
+  dict: {
+    entityType: string;
+    entityName: string;
+    labelName: string;
+    labelAge: string;
+    file: string;
+    back: string;
+    edit: string;
+  };
+}
 
 const NotiDetailView = ({
   notification,
   onEditClick,
   navigate,
-}: NotiDetailViewProps) => {
+  dict,
+}: Props) => {
   return (
     <div>
       <p>
-        <strong>Typ entity:</strong> {notification.entityType}
+        <strong>{dict.entityType}:</strong> {notification.entityType}
       </p>
       <p>
-        <strong>{t("entityName")}:</strong> {notification.entityName}
+        <strong>{dict.entityName}:</strong> {notification.entityName}
       </p>
       <p>
-        <strong>{t("labelName")}:</strong> {notification.whistlerName}
+        <strong>{dict.labelName}:</strong> {notification.whistlerName}
       </p>
       <p>
-        <strong>{t("labelAge")}:</strong> {notification.whistlerAge}
+        <strong>{dict.labelAge}:</strong> {notification.whistlerAge}
       </p>
       {notification.whistlerFile &&
         "originalname" in notification.whistlerFile && (
           <p>
-            <strong>{t("file")}:</strong>{" "}
+            <strong>{dict.file}:</strong>{" "}
             {notification.whistlerFile.originalname}
           </p>
         )}
@@ -34,10 +46,10 @@ const NotiDetailView = ({
           className="mt-3"
           onClick={() => navigate.push("/notificationlist")}
         >
-          {t("back")}
+          {dict.back}
         </Button>
         <Button variant="primary" className="ms-3 mt-3" onClick={onEditClick}>
-          {t("edit")}
+          {dict.edit}
         </Button>
       </div>
     </div>

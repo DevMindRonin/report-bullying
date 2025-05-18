@@ -2,13 +2,20 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { NotificationItemProps } from "@/types/types";
-import { t } from "i18next";
+
+interface Props extends NotificationItemProps {
+  dict: {
+    downloadFile: string;
+    deleteButton: string;
+  };
+}
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const NotificationItem: React.FC<NotificationItemProps> = ({
+const NotificationItem: React.FC<Props> = ({
   notification,
   deleteNotification,
+  dict,
 }) => {
   const navigate = useRouter();
 
@@ -25,7 +32,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
                   download={notification.whistlerFile.originalname}
                   className="me-3"
                 >
-                  {t("downloadFile")}
+                  {dict.downloadFile}
                 </a>
               )}
             <Button
@@ -42,7 +49,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
               variant="outline-danger"
               onClick={() => deleteNotification(notification._id)}
             >
-              {t("deleteButton")}
+              {dict.deleteButton}
             </Button>
           </div>
         </div>

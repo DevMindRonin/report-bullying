@@ -1,21 +1,28 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { OrganizationCodeInputProps } from "@/types/types";
-import { useTranslation } from "react-i18next";
-const OrganizationCodeInput: React.FC<OrganizationCodeInputProps> = ({
+
+interface Props extends OrganizationCodeInputProps {
+  dict: {
+    labelOrganisation: string;
+    findOrganisation: string;
+  };
+}
+
+const OrganizationCodeInput: React.FC<Props> = ({
   organizationCode,
   setOrganizationCode,
   error,
+  dict,
 }) => {
-  const { t } = useTranslation();
   return (
     <Form.Group controlId="organizationCode">
-      <Form.Label className="fw-bold mt-4">{t("labelOrganisation")}</Form.Label>
+      <Form.Label className="fw-bold mt-4">{dict.labelOrganisation}</Form.Label>
       <Form.Control
         type="text"
         value={organizationCode}
         onChange={(e) => setOrganizationCode(e.target.value)}
-        placeholder={t("findOrganisation")}
+        placeholder={dict.findOrganisation}
         className="w-100"
       />
       {error && <div className="text-danger">{error}</div>}

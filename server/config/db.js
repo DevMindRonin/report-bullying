@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { t } from "i18next";
 
 const connectDB = async () => {
   try {
@@ -7,9 +6,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(t("dbConnection"));
+    console.log("MongoDB connection successful");
   } catch (error) {
-    console.error(t("dbConnectionError"), error);
+    console.error("Error connecting to MongoDB:", error);
     process.exit(1);
   }
 };

@@ -1,11 +1,22 @@
 import { Button, Form } from "react-bootstrap";
 import { NotificationType, NotificationDetailFormProps } from "@/types/types";
-import { t } from "i18next";
-const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
+
+interface Props extends NotificationDetailFormProps {
+  dict: {
+    labelName: string;
+    labelAge: string;
+    loadFile: string;
+    save: string;
+    cancel: string;
+  };
+}
+
+const NotificationEditForm: React.FC<Props> = ({
   editedNotification,
   setEditedNotification,
   handleSaveClick,
   setIsEditing,
+  dict,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,7 +44,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
   return (
     <Form onSubmit={handleSaveClick}>
       <Form.Group controlId="whistlerName">
-        <Form.Label className="fw-bold">{t("labelName")}</Form.Label>
+        <Form.Label className="fw-bold">{dict.labelName}</Form.Label>
         <Form.Control
           type="text"
           name="whistlerName"
@@ -42,7 +53,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
         />
       </Form.Group>
       <Form.Group controlId="whistlerAge">
-        <Form.Label className="fw-bold">{t("labelAge")}</Form.Label>
+        <Form.Label className="fw-bold">{dict.labelAge}</Form.Label>
         <Form.Control
           type="number"
           name="whistlerAge"
@@ -51,7 +62,7 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
         />
       </Form.Group>
       <Form.Group controlId="whistlerFile">
-        <Form.Label className="fw-bold">{t("loadFile")}</Form.Label>
+        <Form.Label className="fw-bold">{dict.loadFile}</Form.Label>
         <Form.Control
           type="file"
           name="whistlerFile"
@@ -60,14 +71,14 @@ const NotificationEditForm: React.FC<NotificationDetailFormProps> = ({
       </Form.Group>
       <div className="mt-5 d-flex justify-content-center">
         <Button type="submit" variant="primary">
-          Uložit
+          {dict.save}
         </Button>
         <Button
           variant="secondary"
           className="ms-2"
           onClick={() => setIsEditing(false)}
         >
-          Zrušit
+          {dict.cancel}
         </Button>
       </div>
     </Form>
