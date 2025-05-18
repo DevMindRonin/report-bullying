@@ -5,15 +5,15 @@ import type { Locale } from "@/app/i18n/types";
 export default async function ErrorPage({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }) {
-  const dict = await getDictionary(params.lang);
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
 
   return (
     <div>
       <h3>
-        {dict.notFoundMessage}{" "}
-        <Link href={`/${params.lang}/`}>{dict.back}</Link>
+        {dict.notFoundMessage} <Link href={`/${lang}/`}>{dict.back}</Link>
       </h3>
     </div>
   );

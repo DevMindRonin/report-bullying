@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import type { Dictionary } from "@/app/i18n/types";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const NewNotificationClient = ({
   dict,
@@ -11,21 +12,20 @@ const NewNotificationClient = ({
   dict: Dictionary;
   categories: { label: string; value: string }[];
 }) => {
+  const { setMeta } = useNotificationMetaStore();
   const [entityName, setEntityName] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
   const entityType = searchParams.get("entityType") ?? "";
 
   const proceed = () => {
-    if (entityName) {
-      router.push(
-        `/formpage?entityType=${encodeURIComponent(
-          entityType
-        )}&entityName=${encodeURIComponent(entityName)}`
-      );
-    } else {
-      alert("Please select a school.");
+    if (!entityName || entityName.trim() === "") {
+      alert("Vyberte prosím školu nebo organizaci.");
+      return;
     }
+
+    setMeta(entityType, entityName);
+    router.push("/formpage");
   };
 
   return (

@@ -7,6 +7,12 @@ import {
 } from "../services/notificationServices";
 import { NotificationType } from "@/types/notification.types";
 
+interface NotificationState {
+  entityType: string;
+  entityName: string;
+  setMeta: (type: string, name: string) => void;
+}
+
 interface NotificationStore {
   notifications: NotificationType[];
   loadNotifications: () => Promise<void>;
@@ -17,6 +23,12 @@ interface NotificationStore {
   ) => Promise<void>;
   deleteNotification: (id: string) => Promise<void>;
 }
+
+export const useNotificationMetaStore = create<NotificationState>((set) => ({
+  entityType: "",
+  entityName: "",
+  setMeta: (type, name) => set({ entityType: type, entityName: name }),
+}));
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
   notifications: [],

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
 import OrganizationCodeInput from "@/components/OrganizationCodeInput";
 import { Dictionary } from "@/app/i18n/types";
-import { devIndicatorServerState } from "next/dist/server/dev/dev-indicator-server-state";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const MainPage = ({ dict }: { dict: Dictionary }) => {
   const navigate = useRouter();
@@ -16,18 +16,20 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
   const [entityType, setEntityType] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleEntityTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEntityType(e.target.value);
-  };
+  const { setMeta } = useNotificationMetaStore();
 
   const proceed = () => {
+    console.log("Výběr:", selectionType);
+    console.log("entityType:", entityType);
+
     if (selectionType === "school" && entityType) {
-      navigate.push(`/infopage?entityType=${entityType}`);
+      navigate.push("/infopage");
     } else if (selectionType === "organization") {
       setError(dict.errorOrganizationCode);
+    } else {
+      console.warn("Chybí entityType nebo selectionType není school.");
     }
   };
-
   return (
     <div>
       <h1 className="text-center">{dict.welcome}</h1>
@@ -49,7 +51,12 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
             <Form.Control
               as="select"
               value={entityType}
-              onChange={handleEntityTypeChange}
+              onChange={(e) => {
+                const selectedValue = e.target.value;
+                console.log("Změna výběru školy:", selectedValue);
+                setEntityType(selectedValue);
+                setMeta(selectedValue, "");
+              }}
               placeholder="Vyhledej školu"
               className="w-100"
             >

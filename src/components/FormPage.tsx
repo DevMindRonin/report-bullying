@@ -1,7 +1,7 @@
 "use client";
-
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useRouter, useSearchParams } from "next/navigation";
 import CategorySelect from "@/components/CategorySelect";
@@ -11,14 +11,22 @@ import { useNotificationStore } from "@/stores/notificationStore";
 export default function FormPage({ dict }: { dict: Dictionary }) {
   const navigate = useRouter();
   const searchParams = useSearchParams();
-  const entityType = searchParams.get("entityType") ?? "";
-  const entityName = searchParams.get("entityName") ?? "";
-
-  const [categoryOption, setCategoryOption] = useState<string>(entityName);
   const [whistlerName, setWhistlerName] = useState<string>("");
   const [whistlerAge, setWhistlerAge] = useState<number | "">("");
   const [whistlerFile, setFile] = useState<File | null>(null);
   const addNotification = useNotificationStore((s) => s.addNotification);
+  const { entityType, entityName } = useNotificationMetaStore();
+  const [categoryOption, setCategoryOption] = useState<string>(
+    entityName || ""
+  );
+  useEffect(() => {
+    if (!categoryOption) {
+      const nameFromParams = searchParams.get("entityName");
+      if (nameFromParams) {
+        setCategoryOption(nameFromParams);
+      }
+    }
+  }, [searchParams, categoryOption]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {

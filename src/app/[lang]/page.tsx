@@ -1,10 +1,13 @@
 import MainPage from "@/components/MainPage";
 import { getDictionary } from "@/app/i18n";
-import { getCategories } from "@/lib/categories";
 import type { Locale } from "@/app/i18n/types";
-import NewNotification from "@/components/NewNotification";
 
-export default async function Page({ params }: { params: { lang: Locale } }) {
-  const dict = await getDictionary(params.lang);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: Locale }>;
+}) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   return <MainPage dict={dict} />;
 }
