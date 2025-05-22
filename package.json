@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "devfront": "next dev",
+    "devback": "cd server && node server.mjs",
     "build": "next build",
     "start": "next start"
   },
