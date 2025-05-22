@@ -12,19 +12,19 @@ const NewNotificationClient = ({
   dict: Dictionary;
   categories: { label: string; value: string }[];
 }) => {
-  const { setMeta } = useNotificationMetaStore();
-  const [entityName, setEntityName] = useState("");
+  const [entityNewName, setEntityNewName] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const entityType = searchParams.get("entityType") ?? "";
-
+  const setEntityName = useNotificationMetaStore((s) => s.setEntityName);
+  const { entityType } = useNotificationMetaStore();
   const proceed = () => {
-    if (!entityName || entityName.trim() === "") {
+    if (!entityNewName || entityNewName.trim() === "") {
       alert("Vyberte prosím školu nebo organizaci.");
       return;
     }
 
-    setMeta(entityType, entityName);
+    console.log(`Entity type: ${entityType}, Entity nema: ${entityNewName}`); // debug entit
+
+    setEntityName(entityNewName);
     router.push("/formpage");
   };
 
@@ -36,8 +36,8 @@ const NewNotificationClient = ({
           <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>
           <Form.Control
             as="select"
-            value={entityName}
-            onChange={(e) => setEntityName(e.target.value)}
+            value={entityNewName}
+            onChange={(e) => setEntityNewName(e.target.value)} // setEntityName
           >
             <option value="" disabled hidden>
               {dict.labelChooseNotification}
@@ -54,7 +54,7 @@ const NewNotificationClient = ({
             onClick={proceed}
             variant="primary"
             className="mt-3"
-            disabled={!entityName}
+            disabled={!entityNewName}
           >
             {dict.nextButton}
           </Button>

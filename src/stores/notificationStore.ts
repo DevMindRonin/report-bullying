@@ -10,7 +10,8 @@ import { NotificationType } from "@/types/notification.types";
 interface NotificationState {
   entityType: string;
   entityName: string;
-  setMeta: (type: string, name: string) => void;
+  setEntityType: (type: string) => void;
+  setEntityName: (name: string) => void;
 }
 
 interface NotificationStore {
@@ -27,12 +28,12 @@ interface NotificationStore {
 export const useNotificationMetaStore = create<NotificationState>((set) => ({
   entityType: "",
   entityName: "",
-  setMeta: (type, name) => set({ entityType: type, entityName: name }),
+  setEntityType: (type) => set({ entityType: type }),
+  setEntityName: (name) => set({ entityName: name }),
 }));
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
   notifications: [],
-
   loadNotifications: async () => {
     const data = await fetchNotifications();
     set({ notifications: data });

@@ -1,11 +1,12 @@
 "use client";
-import { useNotificationMetaStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useRouter, useSearchParams } from "next/navigation";
 import CategorySelect from "@/components/CategorySelect";
 import FormFields from "@/components/FormFields";
+
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 import { useNotificationStore } from "@/stores/notificationStore";
 
 export default function FormPage({ dict }: { dict: Dictionary }) {
@@ -19,6 +20,7 @@ export default function FormPage({ dict }: { dict: Dictionary }) {
   const [categoryOption, setCategoryOption] = useState<string>(
     entityName || ""
   );
+
   useEffect(() => {
     if (!categoryOption) {
       const nameFromParams = searchParams.get("entityName");
@@ -42,8 +44,9 @@ export default function FormPage({ dict }: { dict: Dictionary }) {
       alert("Vyplňte všechna pole formuláře.");
       return;
     }
+
     addNotification({
-      entityType: entityType || "",
+      entityType: entityType,
       entityName: categoryOption,
       whistlerName,
       whistlerAge: Number(whistlerAge),
@@ -51,6 +54,8 @@ export default function FormPage({ dict }: { dict: Dictionary }) {
     });
     navigate.push("/finalpage");
   };
+
+  console.log(`Entity type: ${entityType}, Entity nema: ${entityName}`); // debug entit
 
   return (
     <Form onSubmit={handleSubmit}>

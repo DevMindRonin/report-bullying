@@ -12,17 +12,16 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
   const [selectionType, setSelectionType] = useState<"school" | "organization">(
     "school"
   );
+  const [entityNewType, setEntityNewType] = useState<string>("");
+  const setEntityType = useNotificationMetaStore((s) => s.setEntityType);
   const [organizationCode, setOrganizationCode] = useState<string>("");
-  const [entityType, setEntityType] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const { setMeta } = useNotificationMetaStore();
-
   const proceed = () => {
-    console.log("Výběr:", selectionType);
-    console.log("entityType:", entityType);
-
-    if (selectionType === "school" && entityType) {
+    console.log("Výběr:", selectionType); // debug entit
+    console.log("entityType:", entityNewType); // debug entit
+    setEntityType(entityNewType);
+    if (selectionType === "school" && entityNewType) {
       navigate.push("/infopage");
     } else if (selectionType === "organization") {
       setError(dict.errorOrganizationCode);
@@ -30,6 +29,7 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
       console.warn("Chybí entityType nebo selectionType není school.");
     }
   };
+
   return (
     <div>
       <h1 className="text-center">{dict.welcome}</h1>
@@ -50,12 +50,10 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
             </Form.Label>
             <Form.Control
               as="select"
-              value={entityType}
+              value={entityNewType}
               onChange={(e) => {
                 const selectedValue = e.target.value;
-                console.log("Změna výběru školy:", selectedValue);
-                setEntityType(selectedValue);
-                setMeta(selectedValue, "");
+                setEntityNewType(selectedValue);
               }}
               placeholder="Vyhledej školu"
               className="w-100"
@@ -81,6 +79,7 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
           {dict.nextButton}
         </Button>
       </div>
+      {error && <div className="text-danger text-center mt-3">{error}</div>}
     </div>
   );
 };
