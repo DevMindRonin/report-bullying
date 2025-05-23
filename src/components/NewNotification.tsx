@@ -14,19 +14,15 @@ const NewNotificationClient = ({
   lang: string;
   categories: { label: string; value: string }[];
 }) => {
-  const { setMeta } = useNotificationMetaStore();
-  const [entityName, setEntityName] = useState("");
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const entityType = searchParams.get("entityType") ?? "";
+  const { entityType, entityName, setEntityName } = useNotificationMetaStore();
 
   const proceed = () => {
     if (!entityName || entityName.trim() === "") {
       alert("Vyberte prosím školu nebo organizaci.");
       return;
     }
-
-    setMeta(entityType, entityName);
+    setEntityName(entityName);
     router.push(`/${lang}/formpage`);
   };
 

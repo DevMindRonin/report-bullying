@@ -11,8 +11,19 @@ export const createNotification = async (
         key,
         key === "whistlerAge" ? String(value) : (value as string | Blob)
       );
+    } else {
+      console.warn(`Missing value for key: ${key}`);
     }
   });
+
+  // debug
+
+  console.log("NotificationData", notificationData);
+  console.log("FormData entries:");
+  for (const [key, value] of Array.from(formData.entries())) {
+    console.log(key, value);
+  }
+  //debug
   const response = await fetch(`${API_BASE_URL}/api/notifications`, {
     method: "POST",
     body: formData,

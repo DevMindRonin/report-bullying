@@ -5,8 +5,8 @@ import { CategorySelectProps } from "@/types/notification.types";
 import { Dictionary } from "@/app/i18n/types";
 
 const CategorySelect = ({
-  categoryOption,
-  setCategoryOption,
+  entityName,
+  setEntityName,
   dict,
 }: CategorySelectProps & { dict: Dictionary }) => {
   const categories = getCategories(dict);
@@ -15,8 +15,8 @@ const CategorySelect = ({
       <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>
       <Form.Control
         as="select"
-        value={categoryOption}
-        onChange={(e) => setCategoryOption(e.target.value)}
+        value={entityName}
+        onChange={(e) => setEntityName(e.target.value)}
       >
         <option value="" disabled hidden>
           {dict.labelChooseNotification}

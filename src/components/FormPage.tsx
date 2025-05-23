@@ -16,23 +16,11 @@ export default function FormPage({
   lang: string;
 }) {
   const navigate = useRouter();
-  const searchParams = useSearchParams();
   const [whistlerName, setWhistlerName] = useState<string>("");
   const [whistlerAge, setWhistlerAge] = useState<number | "">("");
   const [whistlerFile, setFile] = useState<File | null>(null);
   const addNotification = useNotificationStore((s) => s.addNotification);
-  const { entityType, entityName } = useNotificationMetaStore();
-  const [categoryOption, setCategoryOption] = useState<string>(
-    entityName || ""
-  );
-  useEffect(() => {
-    if (!categoryOption) {
-      const nameFromParams = searchParams.get("entityName");
-      if (nameFromParams) {
-        setCategoryOption(nameFromParams);
-      }
-    }
-  }, [searchParams, categoryOption]);
+  const { entityType, entityName, setEntityName } = useNotificationMetaStore();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -48,9 +36,15 @@ export default function FormPage({
       alert("Vyplňte všechna pole formuláře.");
       return;
     }
+    console.log("EntityType:" + entityType);
+    console.log("EntityName:" + entityName);
+    console.log("WhistlerName:" + whistlerName);
+    console.log("WhistlerAge:" + whistlerAge);
+    console.log("WhistlerFileName:" + whistlerFile?.name);
+
     addNotification({
       entityType: entityType || "",
-      entityName: categoryOption,
+      entityName: entityName,
       whistlerName,
       whistlerAge: Number(whistlerAge),
       whistlerFile,
@@ -61,8 +55,8 @@ export default function FormPage({
   return (
     <Form onSubmit={handleSubmit}>
       <CategorySelect
-        categoryOption={categoryOption}
-        setCategoryOption={setCategoryOption}
+        entityName={entityName}
+        setEntityName={setEntityName}
         dict={dict}
       />
       <FormFields

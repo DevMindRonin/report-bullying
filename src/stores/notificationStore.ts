@@ -10,7 +10,16 @@ import { NotificationType } from "@/types/notification.types";
 interface NotificationState {
   entityType: string;
   entityName: string;
-  setMeta: (type: string, name: string) => void;
+  selectionType: "school" | "organization";
+  organizationCode: string;
+  isEditing: boolean;
+  editedNotification: NotificationType | null;
+  setEntityType: (entityType: string) => void;
+  setEntityName: (entityName: string) => void;
+  setSelectionType: (type: "school" | "organization") => void;
+  setOrganizationCode: (code: string) => void;
+  setIsEditing: (editing: boolean) => void;
+  setEditedNotification: (notification: NotificationType | null) => void;
 }
 
 interface NotificationStore {
@@ -27,7 +36,17 @@ interface NotificationStore {
 export const useNotificationMetaStore = create<NotificationState>((set) => ({
   entityType: "",
   entityName: "",
-  setMeta: (type, name) => set({ entityType: type, entityName: name }),
+  selectionType: "school",
+  organizationCode: "",
+  isEditing: false,
+  editedNotification: null,
+  setEntityType: (type) => set({ entityType: type }),
+  setEntityName: (name) => set({ entityName: name }),
+  setSelectionType: (type) => set({ selectionType: type }),
+  setOrganizationCode: (code) => set({ organizationCode: code }),
+  setIsEditing: (editing) => set({ isEditing: editing }),
+  setEditedNotification: (notification) =>
+    set({ editedNotification: notification }),
 }));
 
 export const useNotificationStore = create<NotificationStore>((set) => ({

@@ -13,9 +13,8 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
     "school"
   );
   const [organizationCode, setOrganizationCode] = useState<string>("");
-  const [entityType, setEntityType] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const { setMeta } = useNotificationMetaStore();
+  const { entityType, setEntityType } = useNotificationMetaStore();
 
   const proceed = () => {
     if (selectionType === "school" && entityType) {
@@ -48,10 +47,7 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
               as="select"
               value={entityType}
               onChange={(e) => {
-                const selectedValue = e.target.value;
-                console.log("Změna výběru školy:", selectedValue);
-                setEntityType(selectedValue);
-                setMeta(selectedValue, "");
+                setEntityType(e.target.value);
               }}
               placeholder="Vyhledej školu"
               className="w-100"

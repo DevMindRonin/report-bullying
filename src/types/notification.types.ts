@@ -53,8 +53,8 @@ export interface NotificationItemProps {
 }
 
 export interface CategorySelectProps {
-  categoryOption: string;
-  setCategoryOption: (value: string) => void;
+  entityName: string;
+  setEntityName: (value: string) => void;
 }
 
 export interface NotificationDetailFormProps {
