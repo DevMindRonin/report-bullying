@@ -8,7 +8,13 @@ import NotificationDetailForm from "@/components/NotificationEditForm";
 import NotificationDetailView from "@/components/NotificationDisplay";
 import type { Dictionary } from "@/app/i18n/types";
 
-export default function NotificationDetail({ dict }: { dict: Dictionary }) {
+export default function NotificationDetail({
+  dict,
+  lang,
+}: {
+  dict: Dictionary;
+  lang: string;
+}) {
   const notifications = useNotificationStore((s) => s.notifications);
   const editNotification = useNotificationStore((s) => s.editNotification);
 
@@ -37,7 +43,7 @@ export default function NotificationDetail({ dict }: { dict: Dictionary }) {
       if (editedNotification && notificationId) {
         await editNotification(notificationId, editedNotification);
         setIsEditing(false);
-        navigate.push("/notificationlist");
+        navigate.push(`/${lang}/notificationlist`);
       } else {
         console.error(dict.idError);
       }
@@ -60,6 +66,7 @@ export default function NotificationDetail({ dict }: { dict: Dictionary }) {
       ) : (
         <NotificationDetailView
           dict={dict}
+          lang={lang}
           notification={notification}
           onEditClick={handleEditClick}
           navigate={navigate}

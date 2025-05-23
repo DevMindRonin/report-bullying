@@ -10,7 +10,8 @@ const NotificationItem = ({
   notification,
   deleteNotification,
   dict,
-}: { dict: Dictionary } & NotificationItemProps) => {
+  lang,
+}: { dict: Dictionary; lang: string } & NotificationItemProps) => {
   const navigate = useRouter();
 
   return (
@@ -33,7 +34,7 @@ const NotificationItem = ({
               className="ms-2 ps-4 pe-4"
               variant="outline-primary"
               onClick={() =>
-                navigate.push(`/notificationdetail/${notification._id}`)
+                navigate.push(`/${lang}/notificationdetail/${notification._id}`)
               }
             >
               Detail

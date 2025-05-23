@@ -5,30 +5,23 @@ import { useRouter, usePathname } from "next/navigation";
 import Logo from "@/assets/images/nntb.jpg";
 import { locales } from "@/app/i18n/config";
 import type { Locale } from "@/app/i18n/types";
-import { useLangStore } from "@/stores/langStore";
 import { isLocale } from "@/app/i18n/types";
-
-const languageLabels: Record<Locale, string> = {
-  cs: "Česky",
-  en: "English (US)",
-};
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLangStore((state) => state.locale);
-  const setLocale = useLangStore((state) => state.setLocale);
+
+  const currentLang = pathname.split("/")[1] as Locale;
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLang = e.target.value;
+    const newLang = e.target.value as Locale;
+    if (!isLocale(newLang)) return;
 
-    if (isLocale(newLang)) {
-      setLocale(newLang);
-      const currentPathWithoutLocale = pathname.split("/").slice(2).join("/");
-      router.push(`/${newLang}/${currentPathWithoutLocale}`);
-    } else {
-      console.error("Invalid locale selected:", newLang);
-    }
+    const segments = pathname.split("/");
+    segments[1] = newLang;
+    const newPath = segments.join("/");
+
+    router.push(newPath);
   };
 
   return (
@@ -45,14 +38,14 @@ const Header = () => {
         <Col className="px-0" md={2}></Col>
         <Col md={5} className="ps-0 d-flex justify-content-center">
           <Form.Select
-            value={locale}
+            value={currentLang}
             onChange={handleLanguageChange}
             className="border-0 bg-transparent"
             style={{ width: "100px", outline: "none" }}
           >
             {locales.map((loc) => (
               <option key={loc} value={loc}>
-                {languageLabels[loc]}
+                {loc === "cs" ? "Čeština" : "English"}
               </option>
             ))}
           </Form.Select>

@@ -6,10 +6,11 @@ import NewNotification from "@/components/NewNotification";
 export default async function NewNotificationPage({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }) {
-  const dict = await getDictionary(params.lang);
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
   const categories = getCategories(dict);
 
-  return <NewNotification dict={dict} categories={categories} />;
+  return <NewNotification dict={dict} lang={lang} categories={categories} />;
 }

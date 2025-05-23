@@ -8,7 +8,13 @@ import CategorySelect from "@/components/CategorySelect";
 import FormFields from "@/components/FormFields";
 import { useNotificationStore } from "@/stores/notificationStore";
 
-export default function FormPage({ dict }: { dict: Dictionary }) {
+export default function FormPage({
+  dict,
+  lang,
+}: {
+  dict: Dictionary;
+  lang: string;
+}) {
   const navigate = useRouter();
   const searchParams = useSearchParams();
   const [whistlerName, setWhistlerName] = useState<string>("");
@@ -49,7 +55,7 @@ export default function FormPage({ dict }: { dict: Dictionary }) {
       whistlerAge: Number(whistlerAge),
       whistlerFile,
     });
-    navigate.push("/finalpage");
+    navigate.push(`/${lang}/finalpage`);
   };
 
   return (

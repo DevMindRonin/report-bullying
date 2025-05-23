@@ -4,10 +4,11 @@ import { Dictionary } from "@/app/i18n/types";
 
 const NotiDetailView = ({
   dict,
+  lang,
   notification,
   onEditClick,
   navigate,
-}: NotiDetailViewProps & { dict: Dictionary }) => {
+}: NotiDetailViewProps & { dict: Dictionary; lang: string }) => {
   return (
     <div>
       <p>
@@ -33,7 +34,7 @@ const NotiDetailView = ({
         <Button
           variant="primary"
           className="mt-3"
-          onClick={() => navigate.push("/notificationlist")}
+          onClick={() => navigate.push(`/${lang}/notificationlist`)}
         >
           {dict.back}
         </Button>

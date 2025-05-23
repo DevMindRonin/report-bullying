@@ -7,7 +7,13 @@ import NotificationItem from "@/components/NotificationItem";
 import { useNotificationStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
 
-export const NotificationList = ({ dict }: { dict: Dictionary }) => {
+export const NotificationList = ({
+  dict,
+  lang,
+}: {
+  dict: Dictionary;
+  lang: string;
+}) => {
   const navigate = useRouter();
   const { notifications, loadNotifications, deleteNotification } =
     useNotificationStore();
@@ -24,6 +30,7 @@ export const NotificationList = ({ dict }: { dict: Dictionary }) => {
           {notifications.map((notification) => (
             <NotificationItem
               dict={dict}
+              lang={lang}
               key={notification._id}
               notification={notification}
               deleteNotification={deleteNotification}
@@ -35,7 +42,7 @@ export const NotificationList = ({ dict }: { dict: Dictionary }) => {
       <Button
         variant="primary"
         className="mt-3"
-        onClick={() => navigate.push("/")}
+        onClick={() => navigate.push(`/${lang}/`)}
       >
         {dict.newNotificationButton}
       </Button>

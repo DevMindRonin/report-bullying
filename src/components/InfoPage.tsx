@@ -1,13 +1,20 @@
-// components/SelectionPage.tsx
 "use client";
 import type { Dictionary } from "@/app/i18n/types";
 import { Button, Container, Col, Row } from "react-bootstrap";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useCurrentLang } from "@/helper/useCurrentLang";
 
-export default function SelectionPage({ dict }: { dict: Dictionary }) {
+export default function InfoPage({
+  dict,
+  lang,
+}: {
+  dict: Dictionary;
+  lang: string;
+}) {
+  // const lang = useCurrentLang();
   const navigate = useRouter();
-  const searchParams = useSearchParams();
-  const entityType = searchParams.get("entityType") ?? "";
+  // const searchParams = useSearchParams();
+  // const entityType = searchParams.get("entityType") ?? "";
 
   return (
     <Container>
@@ -21,20 +28,16 @@ export default function SelectionPage({ dict }: { dict: Dictionary }) {
           <p>{dict.infopageText2}</p>
           <div className="d-flex justify-content-center mt-5">
             <Button
-              onClick={() =>
-                navigate.push(
-                  `/newnotification?entityType=${encodeURIComponent(
-                    entityType
-                  )}`
-                )
-              }
+              onClick={() => navigate.push(`/${lang}/newnotification`)}
+              // `${lang}/newnotification?entityType=${encodeURIComponent(
+              // entityType
               variant="primary"
               className="mt-3"
             >
               {dict.createReportButton}
             </Button>
             <Button
-              onClick={() => navigate.push("/")}
+              onClick={() => navigate.push(`/${lang}/`)}
               variant="outline-primary"
               className="mt-3 ms-3"
             >

@@ -4,7 +4,13 @@ import { Button, Container, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import type { Dictionary } from "@/app/i18n/types";
 
-export default function FinalPage({ dict }: { dict: Dictionary }) {
+export default function FinalPage({
+  dict,
+  lang,
+}: {
+  dict: Dictionary;
+  lang: string;
+}) {
   const navigate = useRouter();
 
   return (
@@ -15,14 +21,14 @@ export default function FinalPage({ dict }: { dict: Dictionary }) {
           <p>{dict.finalPageText}</p>
           <div className="text-center">
             <Button
-              onClick={() => navigate.push("/newnotification")}
+              onClick={() => navigate.push(`/${lang}/newnotification`)}
               variant="outline-secondary"
               className="mt-3"
             >
               {dict.finalPageBackButton}
             </Button>
             <Button
-              onClick={() => navigate.push("/notificationlist")}
+              onClick={() => navigate.push(`/${lang}/notificationlist`)}
               variant="primary"
               className="mt-3 ms-3"
             >

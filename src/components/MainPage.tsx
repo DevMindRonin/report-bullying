@@ -7,7 +7,7 @@ import OrganizationCodeInput from "@/components/OrganizationCodeInput";
 import { Dictionary } from "@/app/i18n/types";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
 
-const MainPage = ({ dict }: { dict: Dictionary }) => {
+const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
   const navigate = useRouter();
   const [selectionType, setSelectionType] = useState<"school" | "organization">(
     "school"
@@ -15,15 +15,11 @@ const MainPage = ({ dict }: { dict: Dictionary }) => {
   const [organizationCode, setOrganizationCode] = useState<string>("");
   const [entityType, setEntityType] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-
   const { setMeta } = useNotificationMetaStore();
 
   const proceed = () => {
-    console.log("Výběr:", selectionType);
-    console.log("entityType:", entityType);
-
     if (selectionType === "school" && entityType) {
-      navigate.push("/infopage");
+      navigate.push(`/${lang}/infopage`);
     } else if (selectionType === "organization") {
       setError(dict.errorOrganizationCode);
     } else {

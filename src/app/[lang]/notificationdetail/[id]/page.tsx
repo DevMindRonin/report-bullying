@@ -5,8 +5,9 @@ import NotificationDetail from "@/components/NotificationDetail";
 export default async function Page({
   params,
 }: {
-  params: { lang: Locale; id: string };
+  params: Promise<{ lang: Locale }>;
 }) {
-  const dict: Dictionary = await getDictionary(params.lang);
-  return <NotificationDetail dict={dict} />;
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+  return <NotificationDetail dict={dict} lang={lang} />;
 }

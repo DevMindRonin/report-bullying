@@ -7,9 +7,11 @@ import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const NewNotificationClient = ({
   dict,
+  lang,
   categories,
 }: {
   dict: Dictionary;
+  lang: string;
   categories: { label: string; value: string }[];
 }) => {
   const { setMeta } = useNotificationMetaStore();
@@ -25,7 +27,7 @@ const NewNotificationClient = ({
     }
 
     setMeta(entityType, entityName);
-    router.push("/formpage");
+    router.push(`/${lang}/formpage`);
   };
 
   return (
