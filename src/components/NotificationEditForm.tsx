@@ -10,6 +10,7 @@ const NotificationEditForm = ({
   setEditedNotification,
   handleSaveClick,
   setIsEditing,
+  notification,
   dict,
 }: NotificationDetailFormProps & { dict: Dictionary }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,46 +37,51 @@ const NotificationEditForm = ({
   };
 
   return (
-    <Form onSubmit={handleSaveClick}>
-      <Form.Group controlId="whistlerName">
-        <Form.Label className="fw-bold">{dict.labelName}</Form.Label>
-        <Form.Control
-          type="text"
-          name="whistlerName"
-          value={editedNotification.whistlerName || ""}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="whistlerAge">
-        <Form.Label className="fw-bold">{dict.labelAge}</Form.Label>
-        <Form.Control
-          type="number"
-          name="whistlerAge"
-          value={editedNotification.whistlerAge || ""}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group controlId="whistlerFile">
-        <Form.Label className="fw-bold">{dict.loadFile}</Form.Label>
-        <Form.Control
-          type="file"
-          name="whistlerFile"
-          onChange={handleFileChange}
-        />
-      </Form.Group>
-      <div className="mt-5 d-flex justify-content-center">
-        <Button type="submit" variant="primary">
-          {dict.save}
-        </Button>
-        <Button
-          variant="secondary"
-          className="ms-2"
-          onClick={() => setIsEditing(false)}
-        >
-          {dict.cancel}
-        </Button>
-      </div>
-    </Form>
+    <div>
+      <Form onSubmit={handleSaveClick}>
+        <Form.Group controlId="whistlerName">
+          <Form.Label className="fw-bold">{dict.labelName}</Form.Label>
+          <Form.Control
+            type="text"
+            name="whistlerName"
+            value={editedNotification.whistlerName || ""}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="whistlerAge">
+          <Form.Label className="fw-bold">{dict.labelAge}</Form.Label>
+          <Form.Control
+            type="number"
+            name="whistlerAge"
+            value={editedNotification.whistlerAge || ""}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group controlId="whistlerFile">
+          <Form.Label className="fw-bold">{dict.loadFile}</Form.Label>
+          <Form.Control
+            type="file"
+            name="whistlerFile"
+            onChange={handleFileChange}
+          />
+          {notification.whistlerFile &&
+            "originalname" in notification.whistlerFile && (
+              <p className="text-center text-success">
+                {notification.whistlerFile.originalname}
+              </p>
+            )}
+        </Form.Group>
+
+        <div className="mt-4 d-flex justify-content-center">
+          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+            {dict.cancel}
+          </Button>
+          <Button type="submit" variant="primary" className="ms-2">
+            {dict.save}
+          </Button>
+        </div>
+      </Form>
+    </div>
   );
 };
 

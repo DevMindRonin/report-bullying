@@ -7,6 +7,15 @@ import {
 } from "../services/notificationServices";
 import { NotificationType } from "@/types/notification.types";
 
+type WhistlerFileType =
+  | File
+  | {
+      originalname: string;
+      path: string;
+      filename: string;
+    }
+  | null;
+
 interface NotificationStore {
   notifications: NotificationType[];
   loadNotifications: () => Promise<void>;
@@ -29,12 +38,12 @@ interface NotificationState {
   setWhistlerName: (whistlerName: string) => void;
   whistlerAge: number | "";
   setWhistlerAge: (wAge: number | "") => void;
-  whistlerFile: File | null;
-  setWhistlerFile: (file: File | null) => void;
+  whistlerFile: WhistlerFileType;
+  setWhistlerFile: (file: WhistlerFileType) => void;
   organizationCode: string;
   setOrganizationCode: (code: string) => void;
-  isEditing: boolean;
-  setIsEditing: (editing: boolean) => void;
+  // isEditing: boolean;
+  // setIsEditing: (editing: boolean) => void;
 
   editedNotification: NotificationType | null;
   setEditedNotification: (notification: NotificationType | null) => void;
@@ -55,8 +64,8 @@ export const useNotificationMetaStore = create<NotificationState>((set) => ({
   setWhistlerFile: (file) => set({ whistlerFile: file }),
   organizationCode: "",
   setOrganizationCode: (code) => set({ organizationCode: code }),
-  isEditing: false,
-  setIsEditing: (editing) => set({ isEditing: editing }),
+  // isEditing: false,
+  // setIsEditing: (editing) => set({ isEditing: editing }),
 
   editedNotification: null,
   setEditedNotification: (notification) =>

@@ -1,8 +1,9 @@
-import React from "react";
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { NotificationItemProps } from "@/types/notification.types";
 import type { Dictionary } from "@/app/i18n/types";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

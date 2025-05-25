@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "@/types/notification.types";
 import { Dictionary } from "@/app/i18n/types";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const NotiDetailView = ({
   dict,
@@ -9,6 +10,7 @@ const NotiDetailView = ({
   onEditClick,
   navigate,
 }: NotiDetailViewProps & { dict: Dictionary; lang: string }) => {
+  const { whistlerFile } = useNotificationMetaStore();
   return (
     <div>
       <p>
@@ -20,19 +22,19 @@ const NotiDetailView = ({
       <p>
         <strong>{dict.labelName}:</strong> {notification.whistlerName}
       </p>
-      <p>
-        <strong>{dict.labelAge}:</strong> {notification.whistlerAge}
-      </p>
+
       {notification.whistlerFile &&
         "originalname" in notification.whistlerFile && (
           <p>
             <strong>{dict.file}:</strong>{" "}
-            {notification.whistlerFile.originalname}
+            <span className="text-success">
+              {notification.whistlerFile.originalname}
+            </span>
           </p>
         )}
       <div className="mt-3 d-flex justify-content-center">
         <Button
-          variant="primary"
+          variant="secondary"
           className="mt-3"
           onClick={() => navigate.push(`/${lang}/notificationlist`)}
         >

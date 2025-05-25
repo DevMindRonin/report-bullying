@@ -1,7 +1,7 @@
 "use client";
 
 import { useNotificationStore } from "@/stores/notificationStore";
-import { useNotificationMetaStore } from "@/stores/notificationStore";
+
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import type { NotificationType } from "@/types/notification.types";
@@ -16,7 +16,7 @@ export default function NotificationDetail({
   dict: Dictionary;
   lang: string;
 }) {
-  const { setIsEditing, isEditing } = useNotificationMetaStore();
+  const [isEditing, setIsEditing] = useState(false);
   const notifications = useNotificationStore((s) => s.notifications);
   const editNotification = useNotificationStore((s) => s.editNotification);
   const navigate = useRouter();
@@ -30,10 +30,6 @@ export default function NotificationDetail({
   if (!notification) {
     return <div>{dict.notFoundMessage}</div>;
   }
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
 
   const handleSaveClick = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +45,7 @@ export default function NotificationDetail({
       console.error(dict.savingError, error);
     }
   };
-
+  if (!notification) return <div>Nic tu není{dict.notFoundMessage}</div>;
   return (
     <div>
       <h2 className="mb-5">{dict.notificationDetail}</h2>
@@ -60,13 +56,14 @@ export default function NotificationDetail({
           setEditedNotification={setEditedNotification}
           handleSaveClick={handleSaveClick}
           setIsEditing={setIsEditing}
+          notification={notification}
         />
       ) : (
         <NotificationDetailView
           dict={dict}
           lang={lang}
           notification={notification}
-          onEditClick={handleEditClick}
+          onEditClick={() => setIsEditing(true)}
           navigate={navigate}
         />
       )}

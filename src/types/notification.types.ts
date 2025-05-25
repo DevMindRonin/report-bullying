@@ -62,6 +62,7 @@ export interface NotificationDetailFormProps {
   >;
   handleSaveClick: (e: React.FormEvent) => void;
   setIsEditing: (code: boolean) => void;
+  notification: NotificationType;
 }
 
 export interface NotificationDetailProps {
