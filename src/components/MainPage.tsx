@@ -9,12 +9,15 @@ import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
   const navigate = useRouter();
-  const [selectionType, setSelectionType] = useState<"school" | "organization">(
-    "school"
-  );
-  const [organizationCode, setOrganizationCode] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
-  const { entityType, setEntityType } = useNotificationMetaStore();
+  const {
+    entityType,
+    setEntityType,
+    selectionType,
+    setSelectionType,
+    organizationCode,
+    setOrganizationCode,
+  } = useNotificationMetaStore();
 
   const proceed = () => {
     if (selectionType === "school" && entityType) {

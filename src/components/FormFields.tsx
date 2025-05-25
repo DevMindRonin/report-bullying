@@ -8,11 +8,11 @@ const FormFields = ({
   setWhistlerName,
   whistlerAge,
   setWhistlerAge,
-  handleFileChange,
+  setWhistlerFileProps,
   dict,
 }: FormFieldsProps & { dict: Dictionary }) => (
   <>
-    <Form.Group controlId="whistlerName">
+    <Form.Group controlId="whistlerName" className="mb-3">
       <Form.Label className="fw-bold">{dict.labelName}</Form.Label>
       <Form.Control
         type="text"
@@ -21,7 +21,7 @@ const FormFields = ({
       />
     </Form.Group>
 
-    <Form.Group controlId="whistlerAge">
+    <Form.Group controlId="whistlerAge" className="mb-3">
       <Form.Label className="fw-bold">{dict.labelAge}</Form.Label>
       <Form.Control
         type="number"
@@ -32,9 +32,9 @@ const FormFields = ({
       />
     </Form.Group>
 
-    <Form.Group controlId="fileUpload" className="mb-3">
+    <Form.Group controlId="fileUpload">
       <Form.Label className="fw-bold">{dict.loadFile}</Form.Label>
-      <Form.Control type="file" onChange={handleFileChange} />
+      <Form.Control type="file" onChange={setWhistlerFileProps} />
     </Form.Group>
   </>
 );

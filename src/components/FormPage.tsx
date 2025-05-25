@@ -1,11 +1,11 @@
 "use client";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
-import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import CategorySelect from "@/components/CategorySelect";
 import FormFields from "@/components/FormFields";
+
 import { useNotificationStore } from "@/stores/notificationStore";
 
 export default function FormPage({
@@ -16,17 +16,24 @@ export default function FormPage({
   lang: string;
 }) {
   const navigate = useRouter();
-  const [whistlerName, setWhistlerName] = useState<string>("");
-  const [whistlerAge, setWhistlerAge] = useState<number | "">("");
-  const [whistlerFile, setFile] = useState<File | null>(null);
   const addNotification = useNotificationStore((s) => s.addNotification);
-  const { entityType, entityName, setEntityName } = useNotificationMetaStore();
+  const {
+    entityType,
+    entityName,
+    setEntityName,
+    setWhistlerAge,
+    whistlerAge,
+    setWhistlerFile,
+    whistlerFile,
+    setWhistlerName,
+    whistlerName,
+  } = useNotificationMetaStore();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setFile(event.target.files[0]);
+      setWhistlerFile(event.target.files[0]);
     } else {
-      setFile(null);
+      setWhistlerFile(null);
     }
   };
 
@@ -36,17 +43,12 @@ export default function FormPage({
       alert("Vyplňte všechna pole formuláře.");
       return;
     }
-    console.log("EntityType:" + entityType);
-    console.log("EntityName:" + entityName);
-    console.log("WhistlerName:" + whistlerName);
-    console.log("WhistlerAge:" + whistlerAge);
-    console.log("WhistlerFileName:" + whistlerFile?.name);
 
     addNotification({
       entityType: entityType || "",
       entityName: entityName,
       whistlerName,
-      whistlerAge: Number(whistlerAge),
+      whistlerAge: whistlerAge,
       whistlerFile,
     });
     navigate.push(`/${lang}/finalpage`);
@@ -65,17 +67,16 @@ export default function FormPage({
         setWhistlerName={setWhistlerName}
         whistlerAge={whistlerAge}
         setWhistlerAge={setWhistlerAge}
-        handleFileChange={handleFileChange}
+        setWhistlerFileProps={handleFileChange}
       />
 
-      <p className="mt-3">
-        <a
-          href="https://www.app.nntb.cz/cs/information-on-personal-data-processing-school"
-          target="_blank"
-          rel="noopener noreferrer"
-        ></a>{" "}
-      </p>
-
+      {whistlerFile && (
+        <div className="text-center">
+          <small className="text-success text-center">
+            {whistlerFile.name}
+          </small>
+        </div>
+      )}
       <div className="d-flex justify-content-center mt-3">
         <Button type="submit" variant="primary" className="mt-3">
           {dict.sendButton}

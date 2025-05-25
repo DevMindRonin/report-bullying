@@ -7,21 +7,6 @@ import {
 } from "../services/notificationServices";
 import { NotificationType } from "@/types/notification.types";
 
-interface NotificationState {
-  entityType: string;
-  entityName: string;
-  selectionType: "school" | "organization";
-  organizationCode: string;
-  isEditing: boolean;
-  editedNotification: NotificationType | null;
-  setEntityType: (entityType: string) => void;
-  setEntityName: (entityName: string) => void;
-  setSelectionType: (type: "school" | "organization") => void;
-  setOrganizationCode: (code: string) => void;
-  setIsEditing: (editing: boolean) => void;
-  setEditedNotification: (notification: NotificationType | null) => void;
-}
-
 interface NotificationStore {
   notifications: NotificationType[];
   loadNotifications: () => Promise<void>;
@@ -33,18 +18,47 @@ interface NotificationStore {
   deleteNotification: (id: string) => Promise<void>;
 }
 
+interface NotificationState {
+  selectionType: "school" | "organization";
+  setSelectionType: (type: "school" | "organization") => void;
+  entityType: string;
+  setEntityType: (entityType: string) => void;
+  entityName: string;
+  setEntityName: (entityName: string) => void;
+  whistlerName: string;
+  setWhistlerName: (whistlerName: string) => void;
+  whistlerAge: number | "";
+  setWhistlerAge: (wAge: number | "") => void;
+  whistlerFile: File | null;
+  setWhistlerFile: (file: File | null) => void;
+  organizationCode: string;
+  setOrganizationCode: (code: string) => void;
+  isEditing: boolean;
+  setIsEditing: (editing: boolean) => void;
+
+  editedNotification: NotificationType | null;
+  setEditedNotification: (notification: NotificationType | null) => void;
+}
+
 export const useNotificationMetaStore = create<NotificationState>((set) => ({
-  entityType: "",
-  entityName: "",
   selectionType: "school",
-  organizationCode: "",
-  isEditing: false,
-  editedNotification: null,
-  setEntityType: (type) => set({ entityType: type }),
-  setEntityName: (name) => set({ entityName: name }),
   setSelectionType: (type) => set({ selectionType: type }),
+  entityType: "",
+  setEntityType: (type) => set({ entityType: type }),
+  entityName: "",
+  setEntityName: (name) => set({ entityName: name }),
+  whistlerName: "",
+  setWhistlerName: (name) => set({ whistlerName: name }),
+  whistlerAge: 0,
+  setWhistlerAge: (wAge) => set({ whistlerAge: wAge }),
+  whistlerFile: null,
+  setWhistlerFile: (file) => set({ whistlerFile: file }),
+  organizationCode: "",
   setOrganizationCode: (code) => set({ organizationCode: code }),
+  isEditing: false,
   setIsEditing: (editing) => set({ isEditing: editing }),
+
+  editedNotification: null,
   setEditedNotification: (notification) =>
     set({ editedNotification: notification }),
 }));

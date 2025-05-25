@@ -25,7 +25,7 @@ export interface FormFieldsProps {
   setWhistlerName: (value: string) => void;
   whistlerAge: number | "";
   setWhistlerAge: (value: number | "") => void;
-  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setWhistlerFileProps: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface NotificationListProps {
@@ -35,15 +35,13 @@ export interface NotificationListProps {
 
 export interface SelectionTypeButtonsProps {
   selectionType: "school" | "organization";
-  setSelectionType: React.Dispatch<
-    React.SetStateAction<"school" | "organization">
-  >;
+  setSelectionType: (types: "school" | "organization") => void;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface OrganizationCodeInputProps {
   organizationCode: string;
-  setOrganizationCode: React.Dispatch<React.SetStateAction<string>>;
+  setOrganizationCode: (code: string) => void;
   error: string | null;
 }
 
@@ -63,7 +61,7 @@ export interface NotificationDetailFormProps {
     React.SetStateAction<Partial<NotificationType>>
   >;
   handleSaveClick: (e: React.FormEvent) => void;
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsEditing: (code: boolean) => void;
 }
 
 export interface NotificationDetailProps {

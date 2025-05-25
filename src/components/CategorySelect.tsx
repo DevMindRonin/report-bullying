@@ -11,7 +11,7 @@ const CategorySelect = ({
 }: CategorySelectProps & { dict: Dictionary }) => {
   const categories = getCategories(dict);
   return (
-    <Form.Group controlId="categorySelect">
+    <Form.Group controlId="categorySelect" className="mb-3">
       <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>
       <Form.Control
         as="select"
