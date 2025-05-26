@@ -28,6 +28,11 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
       console.warn("Chybí entityType nebo selectionType není school.");
     }
   };
+
+  console.log("Entity Type:", entityType);
+  console.log("Selection Type:", selectionType);
+  console.log("Organization Code:", organizationCode);
+
   return (
     <div>
       <h1 className="text-center">{dict.welcome}</h1>

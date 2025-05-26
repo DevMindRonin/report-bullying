@@ -2,6 +2,7 @@
 import type { Dictionary } from "@/app/i18n/types";
 import { Button, Container, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function InfoPage({
   dict,
@@ -21,26 +22,23 @@ export default function InfoPage({
       <p>{dict.infopageText1}</p>
       <p>{dict.infopageText2}</p>
 
-      <div className="d-flex justify-content-center mt-5">
-        <Button
-          style={{
-            display: "inline-block",
-            color: "black",
-            backgroundColor: "yellow",
-          }}
-          onClick={() => navigate.push(`/${lang}/newnotification`)}
-          variant="primary"
-          className="mt-3"
-        >
-          {dict.createReportButton}
-        </Button>
-        <Button
-          onClick={() => navigate.push(`/${lang}/`)}
-          variant="outline-primary"
-          className="mt-3 ms-3"
-        >
-          {dict.goBackButton}
-        </Button>
+      <div className="d-flex justify-content-center mt-4">
+        <div>
+          <Button
+            onClick={() => navigate.push(`/${lang}/newnotification`)}
+            variant="primary"
+            className="mt-3"
+          >
+            {dict.createReportButton}
+          </Button>
+          <Button
+            onClick={() => navigate.push(`/${lang}/`)}
+            variant="outline-primary"
+            className="mt-3 ms-3"
+          >
+            {dict.goBackButton}
+          </Button>
+        </div>
       </div>
     </div>
   );
