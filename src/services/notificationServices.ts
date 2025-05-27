@@ -16,14 +16,6 @@ export const createNotification = async (
     }
   });
 
-  // debug
-
-  console.log("NotificationData", notificationData);
-  console.log("FormData entries:");
-  for (const [key, value] of Array.from(formData.entries())) {
-    console.log(key, value);
-  }
-  //debug
   const response = await fetch(`${API_BASE_URL}/api/notifications`, {
     method: "POST",
     body: formData,

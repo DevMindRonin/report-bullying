@@ -50,7 +50,7 @@ export default function NotificationDetail({
     }
   };
   if (!notification) return <div>Nic tu není{dict.notFoundMessage}</div>;
-  console.log("NotificationDetail", notification._id);
+
   return (
     <div>
       <h2 className="mb-5">{dict.notificationDetail}</h2>
