@@ -14,16 +14,17 @@ const NewNotificationClient = ({
   lang: string;
   categories: { label: string; value: string }[];
 }) => {
+  const [entityNewName, setEntityNewName] = useState("");
   const router = useRouter();
-  const entityName = useNotificationMetaStore((s) => s.entityName);
   const setEntityName = useNotificationMetaStore((s) => s.setEntityName);
-
+  const { entityType } = useNotificationMetaStore();
   const proceed = () => {
-    if (!entityName || entityName.trim() === "") {
+    if (!entityNewName || entityNewName.trim() === "") {
       alert("Vyberte prosím školu nebo organizaci.");
       return;
     }
-    setEntityName(entityName);
+
+    setEntityName(entityNewName);
     router.push(`/${lang}/formpage`);
   };
 
@@ -35,8 +36,8 @@ const NewNotificationClient = ({
           <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>
           <Form.Control
             as="select"
-            value={entityName}
-            onChange={(e) => setEntityName(e.target.value)}
+            value={entityNewName}
+            onChange={(e) => setEntityNewName(e.target.value)} // setEntityName
           >
             <option value="" disabled hidden>
               {dict.labelChooseNotification}
@@ -53,7 +54,7 @@ const NewNotificationClient = ({
             onClick={proceed}
             variant="primary"
             className="mt-3"
-            disabled={!entityName}
+            disabled={!entityNewName}
           >
             {dict.nextButton}
           </Button>

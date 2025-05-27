@@ -7,6 +7,7 @@ import {
 } from "../services/notificationServices";
 import { NotificationType } from "@/types/notification.types";
 
+<<<<<<< HEAD
 type WhistlerFileType =
   | File
   | {
@@ -15,6 +16,14 @@ type WhistlerFileType =
       filename: string;
     }
   | null;
+=======
+interface NotificationState {
+  entityType: string;
+  entityName: string;
+  setEntityType: (type: string) => void;
+  setEntityName: (name: string) => void;
+}
+>>>>>>> origin/main
 
 interface NotificationStore {
   notifications: NotificationType[];
@@ -55,6 +64,7 @@ export const useNotificationMetaStore = create<NotificationState>((set) => ({
   entityType: "",
   setEntityType: (type) => set({ entityType: type }),
   entityName: "",
+<<<<<<< HEAD
   setEntityName: (name) => set({ entityName: name }),
   whistlerName: "",
   setWhistlerName: (name) => set({ whistlerName: name }),
@@ -70,11 +80,14 @@ export const useNotificationMetaStore = create<NotificationState>((set) => ({
   editedNotification: null,
   setEditedNotification: (notification) =>
     set({ editedNotification: notification }),
+=======
+  setEntityType: (type) => set({ entityType: type }),
+  setEntityName: (name) => set({ entityName: name }),
+>>>>>>> origin/main
 }));
 
 export const useNotificationStore = create<NotificationStore>((set) => ({
   notifications: [],
-
   loadNotifications: async () => {
     const data = await fetchNotifications();
     set({ notifications: data });

@@ -1,11 +1,14 @@
 "use client";
-import { useNotificationMetaStore } from "@/stores/notificationStore";
 import type { Dictionary } from "@/app/i18n/types";
 import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import CategorySelect from "@/components/CategorySelect";
 import FormFields from "@/components/FormFields";
 
+<<<<<<< HEAD
+=======
+import { useNotificationMetaStore } from "@/stores/notificationStore";
+>>>>>>> origin/main
 import { useNotificationStore } from "@/stores/notificationStore";
 
 export default function FormPage({
@@ -17,6 +20,7 @@ export default function FormPage({
 }) {
   const navigate = useRouter();
   const addNotification = useNotificationStore((s) => s.addNotification);
+<<<<<<< HEAD
   const {
     entityType,
     entityName,
@@ -28,6 +32,21 @@ export default function FormPage({
     setWhistlerName,
     whistlerName,
   } = useNotificationMetaStore();
+=======
+  const { entityType, entityName } = useNotificationMetaStore();
+  const [categoryOption, setCategoryOption] = useState<string>(
+    entityName || ""
+  );
+
+  useEffect(() => {
+    if (!categoryOption) {
+      const nameFromParams = searchParams.get("entityName");
+      if (nameFromParams) {
+        setCategoryOption(nameFromParams);
+      }
+    }
+  }, [searchParams, categoryOption]);
+>>>>>>> origin/main
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -45,14 +64,21 @@ export default function FormPage({
     }
 
     addNotification({
+<<<<<<< HEAD
       entityType: entityType || "",
       entityName: entityName,
+=======
+      entityType: entityType,
+      entityName: categoryOption,
+>>>>>>> origin/main
       whistlerName,
       whistlerAge: whistlerAge,
       whistlerFile,
     });
     navigate.push(`/${lang}/finalpage`);
   };
+
+  console.log(`Entity type: ${entityType}, Entity nema: ${entityName}`); // debug entit
 
   return (
     <Form onSubmit={handleSubmit}>

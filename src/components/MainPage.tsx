@@ -22,6 +22,18 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
   const proceed = () => {
     if (selectionType === "school" && entityType) {
       navigate.push(`/${lang}/infopage`);
+  const [selectionType, setSelectionType] = useState<"school" | "organization">(
+    "school"
+  );
+  const [entityNewType, setEntityNewType] = useState<string>("");
+  const setEntityType = useNotificationMetaStore((s) => s.setEntityType);
+  const [organizationCode, setOrganizationCode] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  
+  const proceed = () => {
+    
+    if (selectionType === "school" && entityType) {
+      navigate.push(`/${lang}/infopage`);
     } else if (selectionType === "organization") {
       setError(dict.errorOrganizationCode);
     } else {
@@ -49,9 +61,10 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
             </Form.Label>
             <Form.Control
               as="select"
-              value={entityType}
+              value={entityNewType}
               onChange={(e) => {
-                setEntityType(e.target.value);
+                const selectedValue = e.target.value;
+                setEntityNewType(selectedValue);
               }}
               placeholder="Vyhledej školu"
               className="w-100"
@@ -77,6 +90,7 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
           {dict.nextButton}
         </Button>
       </div>
+      {error && <div className="text-danger text-center mt-3">{error}</div>}
     </div>
   );
 };
