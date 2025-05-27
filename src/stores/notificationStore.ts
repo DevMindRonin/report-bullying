@@ -42,7 +42,9 @@ interface NotificationState {
   setWhistlerFile: (file: WhistlerFileType) => void;
   organizationCode: string;
   setOrganizationCode: (code: string) => void;
-  
+  isEditing: boolean;
+  setIsEditing: (isEditing: boolean) => void;
+
   editedNotification: NotificationType | null;
   setEditedNotification: (notification: NotificationType | null) => void;
 }
@@ -62,7 +64,9 @@ export const useNotificationMetaStore = create<NotificationState>((set) => ({
   setWhistlerFile: (file) => set({ whistlerFile: file }),
   organizationCode: "",
   setOrganizationCode: (code) => set({ organizationCode: code }),
-  
+  isEditing: false,
+  setIsEditing: (isEditing) => set({ isEditing }),
+
   editedNotification: null,
   setEditedNotification: (notification) =>
     set({ editedNotification: notification }),

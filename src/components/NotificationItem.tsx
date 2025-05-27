@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import { NotificationItemProps } from "@/types/notification.types";
 import type { Dictionary } from "@/app/i18n/types";
-import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -14,7 +12,6 @@ const NotificationItem = ({
   lang,
 }: { dict: Dictionary; lang: string } & NotificationItemProps) => {
   const navigate = useRouter();
-
   return (
     <tr>
       <td>
@@ -34,9 +31,11 @@ const NotificationItem = ({
             <Button
               className="ms-2 ps-4 pe-4"
               variant="outline-primary"
-              onClick={() =>
-                navigate.push(`/${lang}/notificationdetail/${notification._id}`)
-              }
+              onClick={() => {
+                navigate.push(
+                  `/${lang}/notificationdetail/${notification._id}`
+                );
+              }}
             >
               Detail
             </Button>

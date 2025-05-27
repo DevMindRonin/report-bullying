@@ -1,7 +1,6 @@
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "@/types/notification.types";
 import { Dictionary } from "@/app/i18n/types";
-import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const NotiDetailView = ({
   dict,
@@ -10,7 +9,6 @@ const NotiDetailView = ({
   onEditClick,
   navigate,
 }: NotiDetailViewProps & { dict: Dictionary; lang: string }) => {
-  const { whistlerFile } = useNotificationMetaStore();
   return (
     <div>
       <p>

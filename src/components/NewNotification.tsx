@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import type { Dictionary } from "@/app/i18n/types";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
@@ -15,7 +15,8 @@ const NewNotificationClient = ({
   categories: { label: string; value: string }[];
 }) => {
   const router = useRouter();
-  const { entityType, entityName, setEntityName } = useNotificationMetaStore();
+  const entityName = useNotificationMetaStore((s) => s.entityName);
+  const setEntityName = useNotificationMetaStore((s) => s.setEntityName);
 
   const proceed = () => {
     if (!entityName || entityName.trim() === "") {

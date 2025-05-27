@@ -73,7 +73,9 @@ export default function FormPage({
       {whistlerFile && (
         <div className="text-center">
           <small className="text-success text-center">
-            {whistlerFile.name}
+            {whistlerFile &&
+              !(whistlerFile instanceof File) &&
+              whistlerFile.originalname}
           </small>
         </div>
       )}
