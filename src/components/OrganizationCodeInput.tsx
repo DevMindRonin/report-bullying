@@ -17,7 +17,9 @@ const OrganizationCodeInput = ({ dict }: { dict: Dictionary }) => {
         placeholder={dict.findOrganisation}
         className="w-100"
       />
-      {error && <div className="text-danger">{error}</div>}
+      {error && (
+        <div className="text-danger">{dict[error as keyof typeof dict]}</div>
+      )}
     </Form.Group>
   );
 };

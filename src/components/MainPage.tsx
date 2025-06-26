@@ -15,7 +15,7 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
     if (selectionType === "school" && entityType) {
       navigate.push(`/${lang}/infopage`);
     } else if (selectionType === "organization") {
-      setError(dict.errorOrganizationCode);
+      setError("errorOrganizationCode");
     }
   };
 
