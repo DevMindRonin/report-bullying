@@ -1,9 +1,9 @@
 import { Button, Form } from "react-bootstrap";
-import {
+import type {
   NotificationType,
   NotificationDetailFormProps,
 } from "@/types/notification.types";
-import { Dictionary } from "@/types/i18n.types";
+import type { Dictionary } from "@/types/i18n.types";
 
 const NotificationEditForm = ({
   editedNotification,

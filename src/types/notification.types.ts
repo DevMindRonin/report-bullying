@@ -14,7 +14,7 @@ export interface NotificationType {
     | null;
 }
 
-export interface NotiDetailViewProps {
+export interface NotificationDetailViewProps {
   notification: NotificationType;
   onEditClick: () => void;
   navigate: { push: (href: string) => void };

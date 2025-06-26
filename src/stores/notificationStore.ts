@@ -5,49 +5,10 @@ import {
   deleteNotificationById,
   editNotificationById,
 } from "../services/notificationServices";
-import { NotificationType } from "@/types/notification.types";
-
-type WhistlerFileType =
-  | File
-  | {
-      originalname: string;
-      path: string;
-      filename: string;
-    }
-  | null;
-
-interface NotificationStore {
-  notifications: NotificationType[];
-  loadNotifications: () => Promise<void>;
-  addNotification: (data: Partial<NotificationType>) => Promise<void>;
-  editNotification: (
-    id: string,
-    data: Partial<NotificationType>
-  ) => Promise<void>;
-  deleteNotification: (id: string) => Promise<void>;
-}
-
-interface NotificationState {
-  selectionType: "school" | "organization";
-  setSelectionType: (type: "school" | "organization") => void;
-  entityType: string;
-  setEntityType: (entityType: string) => void;
-  entityName: string;
-  setEntityName: (entityName: string) => void;
-  whistlerName: string;
-  setWhistlerName: (whistlerName: string) => void;
-  whistlerAge: number | "";
-  setWhistlerAge: (wAge: number | "") => void;
-  whistlerFile: WhistlerFileType;
-  setWhistlerFile: (file: WhistlerFileType) => void;
-  organizationCode: string;
-  setOrganizationCode: (code: string) => void;
-  isEditing: boolean;
-  setIsEditing: (isEditing: boolean) => void;
-
-  editedNotification: NotificationType | null;
-  setEditedNotification: (notification: NotificationType | null) => void;
-}
+import type {
+  NotificationState,
+  NotificationStore,
+} from "@/types/notificationStore.types";
 
 export const useNotificationMetaStore = create<NotificationState>((set) => ({
   selectionType: "school",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { FormFieldsProps } from "@/types/notification.types";
-import { Dictionary } from "@/types/i18n.types";
+import type { FormFieldsProps } from "@/types/notification.types";
+import type { Dictionary } from "@/types/i18n.types";
 
 const FormFields = ({
   whistlerName,

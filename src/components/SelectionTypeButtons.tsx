@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Button } from "react-bootstrap";
-import { SelectionTypeButtonsProps } from "@/types/notification.types";
-import { Dictionary } from "@/types/i18n.types";
+import type { SelectionTypeButtonsProps } from "@/types/notification.types";
+import type { Dictionary } from "@/types/i18n.types";
 
 const SelectionTypeButtons = ({
   selectionType,
