@@ -1,8 +1,7 @@
 "use client";
-import type { Dictionary } from "@/app/i18n/types";
-import { Button, Container, Col, Row } from "react-bootstrap";
+import type { Dictionary } from "@/types/i18n.types";
+import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export default function InfoPage({
   dict,

@@ -1,7 +1,7 @@
 "use client";
 import Logo from "@/assets/images/nntb.jpg";
 import Image from "next/image";
-import { Dictionary } from "@/app/i18n/types";
+import { Dictionary } from "@/types/i18n.types";
 
 const Footer = ({ dict }: { dict: Dictionary }) => {
   return (

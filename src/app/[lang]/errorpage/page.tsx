@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getDictionary } from "@/app/i18n/index";
-import type { Locale } from "@/app/i18n/types";
+import type { Locale } from "@/types/i18n.types";
 
 export default async function ErrorPage({
   params,

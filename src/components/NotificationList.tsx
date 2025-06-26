@@ -5,7 +5,7 @@ import { Table, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import NotificationItem from "@/components/NotificationItem";
 import { useNotificationStore } from "@/stores/notificationStore";
-import type { Dictionary } from "@/app/i18n/types";
+import type { Dictionary } from "@/types/i18n.types";
 
 export const NotificationList = ({
   dict,

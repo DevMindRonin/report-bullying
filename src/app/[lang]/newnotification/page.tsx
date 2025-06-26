@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/i18n";
 import { getCategories } from "@/lib/categories";
-import type { Locale } from "@/app/i18n/types";
+import type { Locale } from "@/types/i18n.types";
 import NewNotification from "@/components/NewNotification";
 
 export default async function NewNotificationPage({

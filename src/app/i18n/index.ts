@@ -1,4 +1,4 @@
-import type { Locale, Dictionary } from "@/app/i18n/types";
+import type { Locale, Dictionary } from "@/types/i18n.types";
 
 const dictionaries = {
   cs: () =>

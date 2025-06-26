@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/i18n";
-import type { Locale, Dictionary } from "@/app/i18n/types";
+import type { Locale, Dictionary } from "@/types/i18n.types";
 import NotificationList from "@/components/NotificationList";
 
 export default async function Page({

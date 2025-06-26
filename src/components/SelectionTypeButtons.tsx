@@ -2,13 +2,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { SelectionTypeButtonsProps } from "@/types/notification.types";
-import { Dictionary } from "@/app/i18n/types";
-interface Props extends SelectionTypeButtonsProps {
-  dict: {
-    schoolReport: string;
-    organisationReport: string;
-  };
-}
+import { Dictionary } from "@/types/i18n.types";
 
 const SelectionTypeButtons = ({
   selectionType,

@@ -1,6 +1,6 @@
 "use client";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
-import type { Dictionary } from "@/app/i18n/types";
+import type { Dictionary } from "@/types/i18n.types";
 import { Button, Form } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import CategorySelect from "@/components/CategorySelect";

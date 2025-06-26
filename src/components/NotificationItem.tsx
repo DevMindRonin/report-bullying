@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
-import { NotificationItemProps } from "@/types/notification.types";
-import type { Dictionary } from "@/app/i18n/types";
+import type { NotificationItemProps } from "@/types/notification.types";
+import type { Dictionary } from "@/types/i18n.types";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 

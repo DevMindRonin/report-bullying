@@ -10,7 +10,7 @@ import { useParams, useRouter } from "next/navigation";
 import type { NotificationType } from "@/types/notification.types";
 import NotificationDetailForm from "@/components/NotificationEditForm";
 import NotificationDetailView from "@/components/NotificationDisplay";
-import type { Dictionary } from "@/app/i18n/types";
+import type { Dictionary } from "@/types/i18n.types";
 
 export default function NotificationDetail({
   dict,

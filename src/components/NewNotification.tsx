@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
-import type { Dictionary } from "@/app/i18n/types";
+import type { Dictionary } from "@/types/i18n.types";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const NewNotificationClient = ({

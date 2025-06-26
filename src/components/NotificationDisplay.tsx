@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import { NotiDetailViewProps } from "@/types/notification.types";
-import { Dictionary } from "@/app/i18n/types";
+import { Dictionary } from "@/types/i18n.types";
 
 const NotiDetailView = ({
   dict,

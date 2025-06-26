@@ -1,6 +1,6 @@
 import MainPage from "@/components/MainPage";
 import { getDictionary } from "@/app/i18n";
-import { Locale } from "@/app/i18n/types";
+import { Locale } from "@/types/i18n.types";
 
 export default async function Page({
   params,

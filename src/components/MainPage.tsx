@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
 import OrganizationCodeInput from "@/components/OrganizationCodeInput";
-import { Dictionary } from "@/app/i18n/types";
+import { Dictionary } from "@/types/i18n.types";
 import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {

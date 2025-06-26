@@ -1,9 +1,4 @@
-interface Dictionary {
-  notification1: string;
-  notification2: string;
-  notification3: string;
-  notification4: string;
-}
+import type { Dictionary } from "@/types/i18n.types";
 
 export const getCategories = (dict: Dictionary) => [
   { value: "bullying", label: dict.notification1 },

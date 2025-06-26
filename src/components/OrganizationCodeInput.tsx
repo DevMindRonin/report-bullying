@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { OrganizationCodeInputProps } from "@/types/notification.types";
-import { Dictionary } from "@/app/i18n/types";
+import { Dictionary } from "@/types/i18n.types";
 
 const OrganizationCodeInput = ({
   organizationCode,

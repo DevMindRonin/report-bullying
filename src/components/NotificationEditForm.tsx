@@ -3,7 +3,7 @@ import {
   NotificationType,
   NotificationDetailFormProps,
 } from "@/types/notification.types";
-import { Dictionary } from "@/app/i18n/types";
+import { Dictionary } from "@/types/i18n.types";
 
 const NotificationEditForm = ({
   editedNotification,

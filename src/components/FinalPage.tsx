@@ -2,7 +2,7 @@
 
 import { Button, Container, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/navigation";
-import type { Dictionary } from "@/app/i18n/types";
+import type { Dictionary } from "@/types/i18n.types";
 
 export default function FinalPage({
   dict,
