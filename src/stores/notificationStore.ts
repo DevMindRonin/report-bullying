@@ -27,6 +27,8 @@ export const useNotificationMetaStore = create<NotificationState>((set) => ({
   setOrganizationCode: (code) => set({ organizationCode: code }),
   isEditing: false,
   setIsEditing: (isEditing) => set({ isEditing }),
+  error: "",
+  setError: (error) => set({ error }),
 
   editedNotification: null,
   setEditedNotification: (notification) =>

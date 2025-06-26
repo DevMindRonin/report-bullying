@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "react-bootstrap";
 import type { NotificationDetailViewProps } from "@/types/notification.types";
 import type { Dictionary } from "@/types/i18n.types";

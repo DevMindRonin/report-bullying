@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import SelectionTypeButtons from "@/components/SelectionTypeButtons";
@@ -9,23 +8,14 @@ import { useNotificationMetaStore } from "@/stores/notificationStore";
 
 const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
   const navigate = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  const {
-    entityType,
-    setEntityType,
-    selectionType,
-    setSelectionType,
-    organizationCode,
-    setOrganizationCode,
-  } = useNotificationMetaStore();
+  const store = useNotificationMetaStore();
+  const { setError, entityType, setEntityType, selectionType } = store;
 
   const proceed = () => {
     if (selectionType === "school" && entityType) {
       navigate.push(`/${lang}/infopage`);
     } else if (selectionType === "organization") {
       setError(dict.errorOrganizationCode);
-    } else {
-      console.warn("Chybí entityType nebo selectionType není school.");
     }
   };
 
@@ -33,12 +23,7 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
     <div>
       <h1 className="text-center">{dict.welcome}</h1>
       <div className="d-flex justify-content-center mt-4">
-        <SelectionTypeButtons
-          dict={dict}
-          selectionType={selectionType}
-          setSelectionType={setSelectionType}
-          setError={setError}
-        />
+        <SelectionTypeButtons dict={dict} />
       </div>
 
       <Form>
@@ -53,7 +38,6 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
               onChange={(e) => {
                 setEntityType(e.target.value);
               }}
-              placeholder="Vyhledej školu"
               className="w-100"
             >
               <option value="">{dict.findSchool}</option>
@@ -63,12 +47,7 @@ const MainPage = ({ dict, lang }: { dict: Dictionary; lang: string }) => {
         )}
 
         {selectionType === "organization" && (
-          <OrganizationCodeInput
-            dict={dict}
-            organizationCode={organizationCode}
-            setOrganizationCode={setOrganizationCode}
-            error={error}
-          />
+          <OrganizationCodeInput dict={dict} />
         )}
       </Form>
 

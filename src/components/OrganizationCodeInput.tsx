@@ -1,14 +1,12 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import type { OrganizationCodeInputProps } from "@/types/notification.types";
 import type { Dictionary } from "@/types/i18n.types";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
 
-const OrganizationCodeInput = ({
-  organizationCode,
-  setOrganizationCode,
-  error,
-  dict,
-}: OrganizationCodeInputProps & { dict: Dictionary }) => {
+const OrganizationCodeInput = ({ dict }: { dict: Dictionary }) => {
+  const store = useNotificationMetaStore();
+  const { organizationCode, setOrganizationCode, error } = store;
+
   return (
     <Form.Group controlId="organizationCode">
       <Form.Label className="fw-bold mt-4">{dict.labelOrganisation}</Form.Label>

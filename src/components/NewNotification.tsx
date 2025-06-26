@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Form } from "react-bootstrap";
 import type { Dictionary } from "@/types/i18n.types";
@@ -15,14 +14,10 @@ const NewNotificationClient = ({
   categories: { label: string; value: string }[];
 }) => {
   const router = useRouter();
-  const entityName = useNotificationMetaStore((s) => s.entityName);
-  const setEntityName = useNotificationMetaStore((s) => s.setEntityName);
+  const store = useNotificationMetaStore();
+  const { entityName, setEntityName } = store;
 
   const proceed = () => {
-    if (!entityName || entityName.trim() === "") {
-      alert("Vyberte prosím školu nebo organizaci.");
-      return;
-    }
     setEntityName(entityName);
     router.push(`/${lang}/formpage`);
   };

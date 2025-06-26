@@ -1,6 +1,6 @@
-import MainPage from "@/components/MainPage";
 import { getDictionary } from "@/app/i18n";
 import type { Locale } from "@/types/i18n.types";
+import WithClient from "@/components/WithClient";
 
 export default async function Page({
   params,
@@ -9,5 +9,6 @@ export default async function Page({
 }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  return <MainPage dict={dict} lang={lang} />;
+
+  return <WithClient dict={dict} lang={lang} />;
 }

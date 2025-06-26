@@ -1,15 +1,14 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { getCategories } from "../lib/categories";
-import type { CategorySelectProps } from "@/types/notification.types";
-import type { Dictionary } from "@/types/i18n.types";
 
-const CategorySelect = ({
-  entityName,
-  setEntityName,
-  dict,
-}: CategorySelectProps & { dict: Dictionary }) => {
+import type { Dictionary } from "@/types/i18n.types";
+import { useNotificationMetaStore } from "@/stores/notificationStore";
+
+const CategorySelect = ({ dict }: { dict: Dictionary }) => {
   const categories = getCategories(dict);
+  const store = useNotificationMetaStore();
+  const { entityName, setEntityName } = store;
   return (
     <Form.Group controlId="categorySelect" className="mb-3">
       <Form.Label className="fw-bold">{dict.labelCategory}</Form.Label>

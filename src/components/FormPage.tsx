@@ -17,25 +17,9 @@ export default function FormPage({
 }) {
   const navigate = useRouter();
   const addNotification = useNotificationStore((s) => s.addNotification);
-  const {
-    entityType,
-    entityName,
-    setEntityName,
-    setWhistlerAge,
-    whistlerAge,
-    setWhistlerFile,
-    whistlerFile,
-    setWhistlerName,
-    whistlerName,
-  } = useNotificationMetaStore();
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setWhistlerFile(event.target.files[0]);
-    } else {
-      setWhistlerFile(null);
-    }
-  };
+  const store = useNotificationMetaStore();
+  const { entityType, entityName, whistlerAge, whistlerFile, whistlerName } =
+    store;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,19 +40,8 @@ export default function FormPage({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <CategorySelect
-        entityName={entityName}
-        setEntityName={setEntityName}
-        dict={dict}
-      />
-      <FormFields
-        dict={dict}
-        whistlerName={whistlerName}
-        setWhistlerName={setWhistlerName}
-        whistlerAge={whistlerAge}
-        setWhistlerAge={setWhistlerAge}
-        setWhistlerFileProps={handleFileChange}
-      />
+      <CategorySelect dict={dict} />
+      <FormFields dict={dict} />
 
       {whistlerFile && (
         <div className="text-center">

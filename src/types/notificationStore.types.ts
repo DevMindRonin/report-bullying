@@ -7,7 +7,8 @@ export type WhistlerFileType =
       path: string;
       filename: string;
     }
-  | null;
+  | null
+  | (File & { originalname: string });
 
 export interface NotificationStore {
   notifications: NotificationType[];
@@ -31,13 +32,15 @@ export interface NotificationState {
   setWhistlerName: (whistlerName: string) => void;
   whistlerAge: number | "";
   setWhistlerAge: (wAge: number | "") => void;
-  whistlerFile: WhistlerFileType;
-  setWhistlerFile: (file: WhistlerFileType) => void;
+  whistlerFile?: WhistlerFileType;
+  setWhistlerFile: (event: WhistlerFileType) => void;
+
   organizationCode: string;
   setOrganizationCode: (code: string) => void;
   isEditing: boolean;
   setIsEditing: (isEditing: boolean) => void;
-
+  error: string | null;
+  setError: (error: string | null) => void;
   editedNotification: NotificationType | null;
   setEditedNotification: (notification: NotificationType | null) => void;
 }
